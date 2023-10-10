@@ -1,11 +1,10 @@
 import {
     USER_LOGIN_REQUEST,
+
     USER_LOGIN_FAIL,
     USER_LOGIN_SUCCESS,
     USER_LOGOUT
 } from "../constants/userConstants";
-import {password} from "prompts/lib/prompts";
-import {PRODUCT_DETAILS_FAIL} from "../constants/productConstants";
 import axios from "axios";
 
 
@@ -22,7 +21,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const {data} = await axios.post(
-            '/api/users/login',
+            '/api/users/login/',
             {'username': email, 'password': password}, // data being sent to the server
             config
         )

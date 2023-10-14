@@ -7,6 +7,10 @@ urlpatterns = [
     path('register/', views.register_user, name='register_user'),
 
     path('profile/', views.get_user_profile, name='get_user_profile'),
+    path('profile/update/', views.update_user_profile, name='update_user_profile'),
     path('', views.get_users, name='get_users'),
 
 ]
+
+
+

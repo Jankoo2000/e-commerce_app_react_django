@@ -38,6 +38,7 @@ export const productDetailsReducers =
     (state = {product: {reviews: []}}, action) => {
         switch (action.type) {
             case PRODUCT_DETAILS_REQUEST: // case defined in action
+                // that has all the existing state data
                 return {loading: true, ...state}
 
             case PRODUCT_DETAILS_SUCCESS:

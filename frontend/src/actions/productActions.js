@@ -19,6 +19,7 @@ import {
 export const listProducts = () => async (dispatch) => {
     try {
         // dispatching action
+        // triggers reducer ??(filters the possible reducers by type (switch(action.type))??
         dispatch({
             type: PRODUCT_LIST_REQUEST
         })
@@ -26,6 +27,7 @@ export const listProducts = () => async (dispatch) => {
         const {data} = await axios.get('/api/products/')
 
         // dispatching action
+        // triggers reducer
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
@@ -41,6 +43,7 @@ export const listProducts = () => async (dispatch) => {
 
 export const listProductsDetails = (id) => async (dispatch) => {
     try {
+        // triggers reducer
         dispatch({type: PRODUCT_DETAILS_REQUEST})
         const {data} = await axios.get(`/api/products/${id}`)
 

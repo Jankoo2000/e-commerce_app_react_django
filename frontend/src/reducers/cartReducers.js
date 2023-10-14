@@ -31,7 +31,7 @@ export const cartReducer =
                 if (existItem) {
 
                     return {
-                        ...state,
+                        ...state, // returning shallow copy of state, and therefore the content of this entire structure
                         cartItems: state.cartItems.map(x =>
                             x.product === existItem.product ? item : x
                         )
@@ -40,6 +40,8 @@ export const cartReducer =
                     return {
                         ...state, // orginalState(currentState)  ...makes shallow copy
                         cartItems: [...state.cartItems, item] // it will add new item to array , ex [1,2,4,5,item] ,...state.cartItem is the old array
+                        //you can only make copies of the original values, and then they can mutate the copies.
+
                     }
                 }
 

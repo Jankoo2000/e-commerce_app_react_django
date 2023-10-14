@@ -6,6 +6,8 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
     return (
@@ -20,6 +22,8 @@ function App() {
                         <Route path='/product/:id' element={<ProductScreen/>} exact /> {/* URLs with a path that starts with "/product/" followed by a dynamic parameter ":id. To access that value use  useParams() hook  */}
                         <Route path='/cart/:id?' element={<CartScreen/>} exact /> {/* Use the "element" prop */}
                         <Route path='/login' element={<LoginScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/register' element={<RegisterScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/profile' element={<ProfileScreen/>} /> {/* Use the "element" prop */}
                     </Routes>
                 </Container>
             </main>

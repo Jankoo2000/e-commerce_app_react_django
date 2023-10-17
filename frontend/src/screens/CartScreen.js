@@ -32,9 +32,10 @@ function CartScreen({history}) {
         dispatch(removeFromCart(id))
     }
 
-    const chechOutHandler = () => {
+    const checkOutHandler = () => {
         // eslint-disable-next-line
-        navigate('/login?redirect=shipping')
+        // navigate('/login?redirect=shipping')
+        navigate('/shipping')
     }
 
 
@@ -109,7 +110,7 @@ function CartScreen({history}) {
                             type='button'
                             className='btn-block'
                             disabled={cartItems.length === 0}
-                            onClick={chechOutHandler}
+                            onClick={checkOutHandler}
                         >
                             Procced to CHECKOUT
                         </Button>

@@ -1,4 +1,9 @@
-import {CART_REMOVE_ITEM, CART_ADD_ITEM} from "../constants/cartConstants";
+import {
+    CART_REMOVE_ITEM,
+    CART_ADD_ITEM,
+    CART_SAVE_SHIPPING_ADDRESS,
+    CART_SAVE_PAYMENT_METHOD, CART_CLEAR_ITEMS
+} from "../constants/cartConstants";
 import {PRODUCT_LIST_SUCCESS} from "../constants/productConstants";
 
 
@@ -20,7 +25,7 @@ import {PRODUCT_LIST_SUCCESS} from "../constants/productConstants";
 // when you return new state you should also return currentState by ...state
 export const cartReducer =
     //state (the current state, with a default value of an empty cart) and action (the action dispatched).
-    (state = {cartItems: []}, action) => {
+    (state = {cartItems: [], shippingAddress: {}}, action) => {
         console.log('CART REDUCER')
         switch (action.type) { // entering type filed form action object
             case CART_ADD_ITEM:
@@ -49,6 +54,24 @@ export const cartReducer =
                 return {
                     ...state,
                     cartItems: state.cartItems.filter(x => x.product !== action.payload)
+                }
+
+            case CART_SAVE_SHIPPING_ADDRESS:
+                return {
+                    ...state,
+                    shippingAddress: action.payload
+                }
+
+            case CART_SAVE_PAYMENT_METHOD:
+                return {
+                    ...state,
+                    paymentMethod: action.payload
+                }
+
+            case CART_CLEAR_ITEMS:
+                return {
+                    ...state,
+                    cartItems: []
                 }
 
             default:

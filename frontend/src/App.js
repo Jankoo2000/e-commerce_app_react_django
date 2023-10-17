@@ -8,6 +8,10 @@ import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
     return (
@@ -24,6 +28,10 @@ function App() {
                         <Route path='/login' element={<LoginScreen/>} /> {/* Use the "element" prop */}
                         <Route path='/register' element={<RegisterScreen/>} /> {/* Use the "element" prop */}
                         <Route path='/profile' element={<ProfileScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/shipping' element={<ShippingScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/payment' element={<PaymentScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/placeorder' element={<PlaceOrderScreen/>} /> {/* Use the "element" prop */}
+                        <Route path='/order/:id' element={<OrderScreen/>} /> {/* Use the "element" prop */}
                     </Routes>
                 </Container>
             </main>

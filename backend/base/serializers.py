@@ -4,8 +4,13 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+# is typically used
+# for both sending and receiving data in the context of a Django REST framework (DRF) API.
+
 class UserSerializer(serializers.ModelSerializer):
     # defining fileds. Action in these fileds is defined in methods get_filedname
+    # The fields defined using serializers.SerializerMethodField in a Django REST framework serializer are like
+    # additional properties in the JSON representation of your objects.
     name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)
     isAdmin = serializers.SerializerMethodField(read_only=True)
@@ -17,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin']
 
     # obj = User
-    def get_name(self, obj):
+    def get_name(self, obj):  # obj - (User) instance which is serialized
         name = obj.first_name
         if name == '':
             name = obj.email
@@ -46,3 +51,63 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+
+# class OrderItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = OrderItem
+#         fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    # overwriting image filed because it returns /images/images/phone.jpg
+    image = serializers.SerializerMethodField()
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+    # fixed return /images/phone.jpg
+    def get_image(self, obj):
+        return str(obj.image)
+
+
+class ShippingAddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShippingAddress
+        fields = '__all__'
+
+
+# serializer class (not deserializer)
+class OrderSerializer(serializers.ModelSerializer):
+    # The fields defined using serializers.SerializerMethodField in a Django REST framework serializer are like
+    # additional properties in the JSON representation of your objects.
+    orderItems = serializers.SerializerMethodField(read_only=True)
+    shippingAddress = serializers.SerializerMethodField(read_only=True)
+    user = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+    # how orders act
+    def get_orderItems(self, obj):  # obj - (Order) instance which is serialized
+        items = obj.orderitem_set.all()  # name of table are in lowercase
+        serializer = OrderItemSerializer(items, many=True)
+        return serializer.data
+
+    def get_shippingAddress(self, obj):
+        try:
+            # address = ShippingAddressSerializer(obj.address, many=False)
+            address = ShippingAddressSerializer(obj.shippingaddress,
+                                                many=False).data  # one-to-one relationship with lowercase
+        except Exception as e:
+            print(f"Exception occured: {e}")
+            address = False
+        return address
+
+    def get_user(self, obj):
+        user = obj.user
+        serializer = UserSerializer(user, many=False)
+        return serializer.data
+
+# STRUCTURE OF OrderSerializer OBJECT

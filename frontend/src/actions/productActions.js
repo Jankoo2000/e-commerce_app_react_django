@@ -20,6 +20,7 @@ export const listProducts = () => async (dispatch) => {
     try {
         // dispatching action
         // triggers reducer ??(filters the possible reducers by type (switch(action.type))??
+
         dispatch({
             type: PRODUCT_LIST_REQUEST
         })

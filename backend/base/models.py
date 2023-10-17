@@ -45,12 +45,14 @@ class Order(models.Model):
     isPaid = models.BooleanField(default=False)
     paidAt = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     isDelivered = models.BooleanField(default=False)
-    deliviredAt = models.DateTimeField(auto_now_add=False, null=True,
+    deliveredAt = models.DateTimeField(auto_now_add=False, null=True,
                                        blank=True)  ## manulaly have to save data new_instance.created_at = some_datetime
     createdAt = models.DateTimeField(
-        auto_now_add=True)  # new_instance = MyModel.objects.create()  created_at zostanie automatycznie ustawione na aktualną datę i czas
+        auto_now_add=True)  # new_instance = MyModel.objects.create()  created_at zostanie automatycznie ustawione na
+    # aktualną datę i czas
     _id = models.AutoField(primary_key=True, editable=False)  ## overwrittting pk created by orm
 
+    # shippingaddress - cause to one-to-one relationship
     def __str__(self):
         return str(self.createdAt)
 
@@ -61,7 +63,7 @@ class OrderItem(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     qty = models.IntegerField(null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True) # without static files it would apper in main folder
+    image = models.ImageField(null=True, blank=True)  # without static files it would apper in main folder
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
@@ -73,9 +75,9 @@ class ShippingAddress(models.Model):
     address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
     postalCode = models.CharField(max_length=200, null=True, blank=True)
-    coutry = models.CharField(max_length=200, null=True, blank=True)
-    shippingPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
+    # shippingPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return  self.address
+        return self.address

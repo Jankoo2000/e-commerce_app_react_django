@@ -1,6 +1,10 @@
 import axios from "axios";
-import {CART_ADD_ITEM, CART_REMOVE_ITEM} from "../constants/cartConstants";
-
+import {
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM,
+    CART_SAVE_PAYMENT_METHOD,
+    CART_SAVE_SHIPPING_ADDRESS
+} from "../constants/cartConstants";
 
 
 // default structure of thunk so dont think about that
@@ -33,7 +37,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 export const removeFromCart = (id) => (dispatch, getState) => {
 
     dispatch({
-        type:CART_REMOVE_ITEM,
+        type: CART_REMOVE_ITEM,
         payload: id,
     })
     // after this dispatch , cartReducer response and it updates cartItems
@@ -41,5 +45,31 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     // updated cartItems is saved in local storage
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
+
+
+export const saveShippingAddress = (data) => (dispatch) => {
+
+    dispatch({
+        type: CART_SAVE_SHIPPING_ADDRESS,
+        payload: data,
+    })
+    // after this dispatch , cartReducer response and it updates cartItems
+
+    // updated cartItems is saved in local storage
+    localStorage.setItem('shippingAddress', JSON.stringify(data))
+}
+
+export const savePaymentMethod = (data) => (dispatch) => {
+
+    dispatch({
+        type: CART_SAVE_PAYMENT_METHOD,
+        payload: data,
+    })
+    // after this dispatch , cartReducer response and it updates cartItems
+
+    // updated cartItems is saved in local storage
+    localStorage.setItem('paymentMethod', JSON.stringify(data))
+}
+
 
 

@@ -2,63 +2,75 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import {productListReducers, productDetailsReducers} from './reducers/productReducers'
+import {
+    productListReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer
+} from './reducers/productReducers'
 import {cartReducer} from "./reducers/cartReducers";
 import {
+    userDeleteReducer,
     userDetailsReducer,
+    userListReducer,
     userLoginReducer,
     userRegisterReducer,
-    userUpdateProfileReducer
+    userUpdateProfileReducer,
+    userUpdateReducer
 } from "./reducers/userReducer";
-import {orderCreateReducer, orderDetailsReducer} from "./reducers/orderReducers";
+import {
+    orderCreateReducer, orderDetailsReducer, orderListMy, orderListMyReducer, orderPayReducer
+} from "./reducers/orderReducers";
 
 
 // here are stored all values in these objects
 // all states
 const reducer = combineReducers({
 
-    productList: productListReducers, // state : value
-    productDetails: productDetailsReducers,
+    productList: productListReducer, // state : value
+    productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
+    productUpdate: productUpdateReducer,
+
     cart: cartReducer,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    userList: userListReducer,
+    userDelete: userDeleteReducer,
+    userUpdate: userUpdateReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    orderListMy: orderListMyReducer,
+
 })
 
 
-const cartItemsFromStorage = localStorage.getItem('cartItems') ?
-    JSON.parse(localStorage.getItem('cartItems')) : []
+const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
 // when initialized store loading userInfo
-const userInfoFromStorage = localStorage.getItem('userInfo') ?
-    JSON.parse(localStorage.getItem('userInfo')) : null
+const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ?
-    JSON.parse(localStorage.getItem('shippingAddress')) : {}
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
 
 // initializing (after start or reload of app)
 const initialState = {
     cart: {
-        cartItems: cartItemsFromStorage,
-        shippingAddress: shippingAddressFromStorage,
-    },
-    userLogin: {userInfo: userInfoFromStorage}
+        cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage,
+    }, userLogin: {userInfo: userInfoFromStorage}
 }
 
 
 const middleware = [thunk]
 
 // The store holds the current state of your application.
-const store = createStore(
-    reducer, // Reducer(s)
+const store = createStore(reducer, // Reducer(s)
     initialState, // Initial state
     composeWithDevTools( // Enhancers (Redux DevTools)
         applyMiddleware(...middleware)// Middleware
-    )
-)
+    ))
 
 export default store
 

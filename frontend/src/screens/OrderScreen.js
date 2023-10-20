@@ -3,10 +3,11 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import {Button, Card, Col, Image, ListGroup, Row} from "react-bootstrap";
 import Message from "../components/Message";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {getOrderDetails} from "../actions/orderActions";
-import React, {useEffect} from "react";
-import {ORDER_CREATE_RESET} from "../constants/orderConstants";
+import {getOrderDetails, payOrder} from "../actions/orderActions";
+import React, {useEffect, useState} from "react";
+import {ORDER_CREATE_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
 import Loader from "../components/Loader";
+import {PayPalButton} from "react-paypal-button-v2";
 
 
 function OrderScreen() {
@@ -14,19 +15,50 @@ function OrderScreen() {
     const {id} = useParams() // name of variable must be exactly as in route <Route path='/order/:id' element={<OrderScreen/>}
     const dispatch = useDispatch()
 
+    const [sdkReady, setSdkReady] = useState(false);
 
     const orderDetails = useSelector(state => state.orderDetails)
     const {order, error, loading} = orderDetails
+
+    const orderPay = useSelector(state => state.orderPay)
+    const {loading: loadingPay, success: successPay} = orderPay
 
     if (!loading && !error) {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2) // adding new property to object
     }
 
-    useEffect(() => {
-        if (!order || order._id !== Number(id)) {
-            dispatch(getOrderDetails(id))
+
+    const addPayPalScript = () => {
+        const script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.src = 'https://www.paypal.com/sdk/js?client-id=AYYlWYCO5Q4ovreI6AwFwPAaoJflhYFhXjc3zml0zcCvcIFQK-uop8qYyvEtHljX1JxO9zlQyEmdaQoA&currency=USD'
+        script.async = true
+        script.onload = () => {
+            setSdkReady(true)
         }
-    }, [order, id, dispatch]);
+        document.body.appendChild(script)
+    }
+
+
+    useEffect(() => {
+        if (!order || order._id !== Number(id) || successPay) {
+            dispatch({type: ORDER_PAY_RESET})
+            dispatch(getOrderDetails(id))
+        } else if (!order.isPaid) {
+            if (!window.paypal) {
+                addPayPalScript()
+                setSdkReady(true) // should be here, but without this button is not loading
+
+            } else {
+                setSdkReady(true)
+            }
+        }
+    }, [order, id, dispatch, successPay]);
+
+    const successPaymentHandler = (paymentResult) => {
+        dispatch(payOrder(id, paymentResult))
+
+    }
 
 
     return loading ? (
@@ -136,6 +168,22 @@ function OrderScreen() {
                                     <Col>${order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
+
+                            {!order.isPaid && (
+                                <ListGroup.Item>
+                                    {loadingPay && <Loader/>}
+
+                                    {!sdkReady ? (
+                                        <Loader/>
+                                    ) : (
+                                        <PayPalButton
+                                            amount={order.totalPrice}
+                                            onSuccess={successPaymentHandler}
+                                        />
+
+                                    )}
+                                </ListGroup.Item>
+                            )}
 
                             <ListGroup.Item>
                                 {/*if the error variable is undefined message won't display*/}

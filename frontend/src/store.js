@@ -5,12 +5,19 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {productListReducers, productDetailsReducers} from './reducers/productReducers'
 import {cartReducer} from "./reducers/cartReducers";
 import {
-    userDetailsReducer,
+    userDeleteReducer,
+    userDetailsReducer, userListReducer,
     userLoginReducer,
     userRegisterReducer,
-    userUpdateProfileReducer
+    userUpdateProfileReducer, userUpdateReducer
 } from "./reducers/userReducer";
-import {orderCreateReducer, orderDetailsReducer} from "./reducers/orderReducers";
+import {
+    orderCreateReducer,
+    orderDetailsReducer,
+    orderListMy,
+    orderListMyReducer,
+    orderPayReducer
+} from "./reducers/orderReducers";
 
 
 // here are stored all values in these objects
@@ -20,12 +27,19 @@ const reducer = combineReducers({
     productList: productListReducers, // state : value
     productDetails: productDetailsReducers,
     cart: cartReducer,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    userList: userListReducer,
+    userDelete: userDeleteReducer,
+    userUpdate: userUpdateReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    orderListMy: orderListMyReducer,
 })
 
 

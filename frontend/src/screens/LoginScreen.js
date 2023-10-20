@@ -22,7 +22,7 @@ function LoginScreen() {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect)
+            navigate(redirect) // redirect to main page
         }
     }, [navigate, userLogin, redirect]);
 

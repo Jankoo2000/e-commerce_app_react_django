@@ -14,6 +14,8 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
 # sending with token username and email
+# The line that causes the actual login in the code you provided is not explicitly shown in the snippet you shared.
+# The login process is triggered when a POST request is made to the URL associated with the MyTokenObtainPairView
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -119,4 +121,39 @@ def update_user_profile(request):
 def get_users(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)  # safe parameter@api_view(['GET'])
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])  # without ACCESS token is;t not accessible
+def get_user_by_id(request, pk):
+    users = User.objects.get(id=pk)
+    serializer = UserSerializer(users, many=False)
     return Response(serializer.data)  # safe parameter provides serialize list to json@api_view(['GET'])
+
+
+@api_view(['PUT'])  # response to PUT request / PUT = UPDATE
+@permission_classes([IsAuthenticated])  # without ACCESS token is't [http://127.0.0.1:8000/api/users/login/] not
+# accesable "detail": "Authentication credentials were not provided."
+def update_user(request, pk):
+    user = User.objects.get(id=pk)
+
+    data = request.data
+    # deserializing
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+    user.is_staff = data['isAdmin']
+
+    user.save()
+    serializer = UserSerializer(user, many=False)  # how to serialize
+
+    return Response(serializer.data)  #
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])  # without ACCESS token is;t not accessible
+def delete_user(request, pk):
+    user_for_deletion = User.objects.get(id=pk)
+    user_for_deletion.delete()
+    return Response('User was deleted')

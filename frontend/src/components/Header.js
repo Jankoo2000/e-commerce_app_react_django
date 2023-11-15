@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {logout} from "../actions/userActions";
+import SearchBox from "./SearchBox";
 
 function Header() {
 
@@ -29,12 +30,14 @@ function Header() {
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navabr-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBox/>
                         <Nav className="mr-auto">
+
                             <LinkContainer to='/cart'>
                                 <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                             </LinkContainer>
 
-                            {/* check strucutre of userInfo in Redux tree*/}
+                            {/* check strucutre of userInfo in a Redux tree*/}
                             {userInfo ? (
                                 <NavDropdown title={userInfo.username} id='username'>
                                     <LinkContainer to='/profile'>

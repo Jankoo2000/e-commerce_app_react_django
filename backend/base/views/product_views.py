@@ -14,10 +14,24 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 @api_view(['GET'])
 def get_products(request):
-    products = Product.objects.all()
+    query = request.query_params.get('keyword')
+    print('query: ', query)
+    if query is None:
+        query = ''
+
+    # products = Product.objects.all()
+    products = Product.objects.filter(name__icontains=query)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)  # safe parameter provides serialize list to json
 
+
+@api_view(['GET'])
+def get_top_products(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[:5]
+    # "rating" field is greater than or equal to 4.
+    # The minus sign ("-") before "rating" indicates a descending order, so the products with the highest ratings will be at the to
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 # one cliced product it goes to
 @api_view(['GET'])
@@ -30,8 +44,9 @@ def get_product(request, pk):
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def create_product(request):
+    # TODO: update this function
     user = request.user
-    # data = request.data
+    data = request.data
     product = Product.objects.create(
         user=user,
         name='Ziemniak',
@@ -74,3 +89,15 @@ def delete_product(request, pk):
     product.delete()
     print('Product deleted')
     return Response('Product deleted')
+
+
+@api_view(['POST'])
+def upload_image(request):
+    data = request.data
+
+    product_id = data['product_id']
+    product = Product.objects.get(_id=product_id)
+
+    product.image = request.FILES.get('image')
+    product.save()
+    return Response('Image was uploaded')

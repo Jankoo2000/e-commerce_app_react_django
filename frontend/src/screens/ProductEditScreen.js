@@ -9,6 +9,8 @@ import {getUserDetails, updateUser} from "../actions/userActions";
 import {USER_UPDATE_RESET} from "../constants/userConstants";
 import {listProductsDetails, updateProduct} from "../actions/productActions";
 import {PRODUCT_UPDATE_RESET} from "../constants/productConstants";
+import {Input} from "postcss";
+import axios from "axios";
 
 
 function ProductEditScreen() {
@@ -24,6 +26,7 @@ function ProductEditScreen() {
     const [category, setCategory] = useState('');
     const [countInStock, setCountInStock] = useState(0);
     const [description, setDescription] = useState('');
+    const [uploading, setUploading] = useState(false);
 
 
     const productDetails = useSelector(state => state.productDetails)
@@ -74,6 +77,34 @@ function ProductEditScreen() {
 
     }
 
+    const uploadFileHandler = async (e) => {
+
+        const file = e.target.files[0]
+        const formData = new FormData()
+
+        formData.append('image', file)
+        formData.append('product_id', productId)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const {data} = await axios.post(
+                '/api/products/upload/',
+                formData,
+                config)
+
+            setImage(data)
+            setUploading(false)
+
+        } catch (error) {
+            setUploading(false)
+        }
+    }
 
     return (
         <div>
@@ -85,7 +116,7 @@ function ProductEditScreen() {
             <FormContainer>
                 <h1>EDIT PRODUCT</h1>
                 {loadingUpdate && <Loader/>}
-                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message> }
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> :
                     (
                         <Form onSubmit={submitHandler}>
@@ -122,6 +153,17 @@ function ProductEditScreen() {
                                     onChange={(e) => setImage(e.target.value)}
                                 >
                                 </Form.Control>
+
+
+                                <input
+                                    id='image-file'
+                                    type="file"
+                                    label='Choose File'
+                                    onChange={(e) => uploadFileHandler(e)}
+                                >
+                                </input>
+                                {uploading && <Loader/>}
+
                             </Form.Group>
 
 

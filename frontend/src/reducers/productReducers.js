@@ -15,7 +15,7 @@ import {
     PRODUCT_CREATE_RESET,
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
-    PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_RESET
+    PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_RESET, PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_TOP_REQUEST
 } from "../constants/productConstants";
 
 export const productListReducer =
@@ -117,3 +117,21 @@ export const productUpdateReducer = (state = {product: {}}, action) => {
             return state
     }
 }
+
+
+export const productTopRatedReducer =
+    (state = {products: []}, action) => {
+        switch (action.type) {
+            case PRODUCT_TOP_REQUEST: // case defined in action
+                // that has all the existing state data
+                return {loading: true, products: []}
+
+            case PRODUCT_TOP_SUCCESS:
+                return {loading: false, products: action.payload}
+
+            case PRODUCT_TOP_FAIL:
+                return {loading: false, error: action.payload}
+            default:
+                return state
+        }
+    }

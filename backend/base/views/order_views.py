@@ -5,7 +5,7 @@ from base.views import order_views as views
 from base.models import Product, Order, OrderItem, ShippingAddress
 from rest_framework.decorators import api_view, permission_classes
 from base.serializers import *
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
@@ -68,6 +68,14 @@ def get_my_orders(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def get_orders(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['GET'])  # respond to GET request
 @permission_classes([IsAuthenticated])
 def get_order_by_id(request, pk):  # path('<str:pk>/', views.get_order_by_id, name='get_order_by_id'),
@@ -96,3 +104,14 @@ def update_order_to_paid(request, pk):
     order.paidAt = datetime.now()
     order.save()
     return Response('Order was paid')
+
+
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def update_order_to_delivered(request, pk):
+    order = Order.objects.get(_id=pk)
+
+    order.isDelivered = True
+    order.deliveredAt = datetime.now()
+    order.save()
+    return Response('Order was delivered')

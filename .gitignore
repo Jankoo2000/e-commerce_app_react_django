@@ -4,3 +4,6 @@ myenv/
 
 # Ignore React/node.js dependencies
 frontend/node_modules/
+
+# Ignore UML dir
+UML/

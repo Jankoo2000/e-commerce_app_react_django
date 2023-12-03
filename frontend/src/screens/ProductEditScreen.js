@@ -204,7 +204,7 @@ function ProductEditScreen() {
 
 
                             <Form.Group controlId='description'>
-                                <Form.Label>Category</Form.Label>
+                                <Form.Label>Description</Form.Label>
                                 <Form.Control
                                     type='text'
                                     placeholder={'Enter description}'}

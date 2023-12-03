@@ -1,22 +1,114 @@
-main{
+main {
     min-height: 80vh;
 }
 
-h1{
+h1 {
     font-size: 1.8rem;
     padding: 1rem 0;
 }
 
-h2{
+h2 {
     font-size: 1.4rem;
     padding: 0.5rem 0;
 }
 
 
-h3{
-    padding:1rem 0;
+h3 {
+    padding: 1rem 0;
 }
 
-.rating span{
-    margin:0.1rem;
+.rating span {
+    margin: 0.1rem;
+}
+
+
+.center-image {
+    display: block;
+    margin: auto;
+    object-fit: contain; /* This property maintains the image's aspect ratio */
+    max-width: 100%; /* Ensures the image doesn't exceed its container */
+    height: auto;
+}
+
+.responsive-h4 {
+    font-size: 24px; /* Default font size */
+}
+
+@media (max-width: 768px) {
+    /* Adjust font size for smaller screens */
+    .responsive-h4 {
+        font-size: 12px;
+    }
+}
+
+
+/* Style for the search input */
+/* Style for the search input */
+.Form.Control[type='text'] {
+    width: 250px; /* Set your desired width */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+/* Style for the search button */
+.search-button {
+    background-color: #007bff; /* Change to your desired button color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Change to a darker shade for hover effect */
+}
+
+
+/* Add this CSS to your stylesheet or in a style tag */
+.cart-icon {
+    font-size: 1.8em; /* Adjust the size as needed */
+}
+
+/* Add media query for smaller screens if necessary */
+@media (max-width: 768px) {
+    .cart-icon {
+        font-size: 1.2em; /* Adjust the size for smaller screens */
+    }
+}
+
+
+/* External CSS File */
+.search-input {
+    width: 350px; /* Set your desired width */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+.search-button {
+    background-color: #007bff; /* Change to your desired button color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.ml-auto {
+    /*margin-left: 10px;*/
+}
+
+@media (max-width: 768px) {
+    .cart-icon {
+        display: flex;
+        justify-content: center; /* Horizontally center */
+        align-items: center; /* Vertically center */
+        /* Other styles */
+    }
+
 }

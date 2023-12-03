@@ -109,7 +109,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.urls' #??????
+ROOT_URLCONF = 'backend.urls'  # ??????
 
 TEMPLATES = [
     {
@@ -134,8 +134,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'e-commarce',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
     }
 }
 

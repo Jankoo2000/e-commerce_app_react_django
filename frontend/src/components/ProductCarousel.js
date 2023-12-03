@@ -22,22 +22,24 @@ function ProductCarousel() {
             : error
                 ? <Message variant='danger'>{error}</Message>
                 : (
-                    <Carousel
-                        pause='hover'
-                        className='bg-dark'
-                    >
+                    <Carousel pause='hover' className='bg-gradient'>
                         {products.map(product => (
                             <Carousel.Item key={product._id}>
                                 <Link to={`/product/${product._id}`}>
-                                    <img src={product.image} alt={product.name} fluid/>
-                                    <Carousel.Caption className='carousel.caption'>
-                                        <h4>{product.name} (${product.price})</h4>
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className='center-image' // Add this className
+                                    />
+                                    <Carousel.Caption className='carousel-caption'>
+                                        <h4 className='responsive-h4'>{product.name} (${product.price})</h4>
                                     </Carousel.Caption>
                                 </Link>
-
                             </Carousel.Item>
                         ))}
                     </Carousel>
+
+
                 )
     )
 }

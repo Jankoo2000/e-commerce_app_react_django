@@ -1,6 +1,7 @@
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, FormControl} from "react-bootstrap";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+
 
 function SearchBox() {
     const [keyword, setKeyword] = useState('')
@@ -11,54 +12,111 @@ function SearchBox() {
 
     function submitHandler(e) {
         e.preventDefault()
+        if (keyword === '') {
+            navigate(`/`)
+        }
         if (keyword) {
             navigate(`/?keyword=${keyword}`)
         }
 
+
     }
 
     return (
-        <Form onSubmit={submitHandler}>
-            <Form.Control
+        // <Form onSubmit={submitHandler} className="d-flex align-items-center">
+        //     <Form.Control
+        //         type='text'
+        //         name='q'
+        //         onChange={(e) => setKeyword(e.target.value)}
+        //         placeholder="Search..."
+        //         style={{
+        //             width: '350px', // Set your desired width
+        //             padding: '8px',
+        //             border: '1px solid #ccc',
+        //             borderRadius: '4px',
+        //             marginRight: '10px', // Adjust margin as needed
+        //         }}
+        //     />
+        //     <Button type='submit' className='search-button' style={{
+        //         backgroundColor: '#007bff', // Change to your desired button color
+        //         color: 'white',
+        //         border: 'none',
+        //         padding: '8px 12px',
+        //         borderRadius: '4px',
+        //         cursor: 'pointer',
+        //     }}>
+        //         <svg
+        //             xmlns="http://www.w3.org/2000/svg"
+        //             width="16"
+        //             height="16"
+        //             fill="currentColor"
+        //             className="bi bi-search"
+        //             viewBox="0 0 16 16"
+        //         >
+        //             <path
+        //                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        //         </svg>
+        //     </Button>
+        // </Form>
+
+        <Form onSubmit={submitHandler} className="d-flex align-items-center">
+            <FormControl
                 type='text'
                 name='q'
                 onChange={(e) => setKeyword(e.target.value)}
-                className='mr-sm-2 ml-sm-5'
-            >
-            </Form.Control>
-
-            <Button
-                type='submit'
-                variant='outline-success'
-                className='p-2'>
-                SUBMIT
+                placeholder="Search..."
+                className="search-input"
+            />
+            <Button type='submit' className='search-button'>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-search"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
             </Button>
 
+            <style jsx>{`
+              /* Styles for larger screens */
+              .search-input {
+                width: 350px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-right: 10px;
+              }
+
+              .search-button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+              }
+
+              /* Media query for smaller screens (e.g., smartphones) */
+              @media (max-width: 576px) {
+                .search-input {
+                  width: 90%; /* Take up full width */
+                  margin-right: 0; /* No margin on small screens */
+                  margin-bottom: 10px; /* Add some space between input and button */
+                  margin-top: 10px; /* Add some space between input and button */
+                }
+
+                .search-button {
+                  margin-left: 3px;
+                  width: auto; /* Take up full width */
+                }
+              }
+            `}</style>
         </Form>
 
-        // <div className="container">
-        //
-        //     {/*<div className="row height d-flex justify-content-center align-items-center">*/}
-        //
-        //     <div className="col-md-6">
-        //
-        //         <div className="form">
-        //             <i className="fa fa-search"></i>
-        //             <input type="text" className="form-control form-input" placeholder="Search anything..."/>
-        //
-        //         </div>
-        //
-        //     </div>
-        //
-        //     {/*</div>*/}
-        //
-        //     <Button
-        //         type='submit'
-        //         variant='outline-success'
-        //         className='p-2'>
-        //         SUBMIT
-        //     </Button>
-        // </div>
     )
 }
 

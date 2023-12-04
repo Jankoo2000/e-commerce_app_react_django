@@ -1,0 +1,39 @@
+
+
+
+
+
+@media (min-width: 993px) {
+  .cart-icon {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 18%; /* Adjust top position */
+    right: 19%; /* Adjust right position */
+  }
+}
+
+@media (min-width: 993px) {
+  .person-icon-1 {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 24%; /* Adjust top position */
+    right: 12%; /* Adjust right position */
+  }
+}
+
+
+@media (min-width: 993px) {
+  .person-icon-2 {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 24%; /* Adjust top position */
+    right: 14%; /* Adjust right position */
+  }
+}
+
+
+
+@media (min-width: 993px) {
+  .admin-icon {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 24%; /* Adjust top position */
+    right: 8%; /* Adjust right position */
+  }
+}

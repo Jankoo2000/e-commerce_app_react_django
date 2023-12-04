@@ -63,7 +63,7 @@ function LoginScreen() {
                     </Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>SIGN IN</Button>
+                <Button type='submit' variant='primary' className='py-3 mt-3'>SIGN IN</Button>
 
             </Form>
 

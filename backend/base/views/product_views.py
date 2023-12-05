@@ -11,6 +11,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
+from django.http import HttpResponse
+def home_test_page(request):
+    return HttpResponse('This is home page')
 
 @api_view(['GET'])
 def get_products(request):

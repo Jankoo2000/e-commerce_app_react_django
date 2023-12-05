@@ -20,7 +20,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from base.views import product_views as view
+
 urlpatterns = [
+    path('', view.home_test_page, name='home_view'),
+
     path('admin/', admin.site.urls),
 
     path('api/products/', include('base.urls.product_urls')),

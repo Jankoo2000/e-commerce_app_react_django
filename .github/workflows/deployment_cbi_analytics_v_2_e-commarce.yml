@@ -31,8 +31,8 @@ jobs:
         run: |
           pip install -r backend/requirements.txt
 
-      - name: Run collectstatic
-        run: python backend/manage.py collectstatic --noinput
+#      - name: Run collectstatic
+#        run: python backend/manage.py collectstatic --noinput
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3

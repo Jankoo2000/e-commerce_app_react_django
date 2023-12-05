@@ -4,7 +4,8 @@ from .settings import BASE_DIR
 
 # https://cbi-analytics.nl/deploy-django-react-on-azure-2-change-backend-code-for-deployment/
 
-SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'django-insecure-7^0er-(fs)dm$uhf6*e-l=+nl1#((t*1(e-@frnl0k!clnixz*'
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 DEBUG = False

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from django.conf import settings
@@ -21,10 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7^0er-(fs)dm$uhf6*e-l=+nl1#((t*1(e-@frnl0k!clnixz*'
+# SECRET_KEY = 'django-insecure-7^0er-(fs)dm$uhf6*e-l=+nl1#((t*1(e-@frnl0k!clnixz*'
+#
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['Path']
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -101,6 +107,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,6 +148,19 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
+
+
+# conn_str = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
+# conn_str_params = {pair.split('=')[0]: pair.split('=')[1] for pair in conn_str.split(' ')}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': conn_str_params['dbname'],
+#         'HOST': conn_str_params['host'],
+#         'USER': conn_str_params['user'],
+#         'PASSWORD': conn_str_params['password'],
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -183,20 +203,17 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = 'static/images'  # refers to the directory where user-uploaded media files (such as images, videos, or documents) are stored.
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  ####### ????????????
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:3002",
-]
+
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost'
+    '.azurewebsites.net'
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True

@@ -6,10 +6,13 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
-    settings_module = 'backend.production' if 'WEBSITE_HOSTNAME' in os.environ else 'backend.settings'
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+    # settings_module = 'backend.production' if 'WEBSITE_HOSTNAME' in os.environ else 'backend.settings'
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.production')
+
 
     try:
         from django.core.management import execute_from_command_line

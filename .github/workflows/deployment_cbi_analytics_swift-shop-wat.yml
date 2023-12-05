@@ -3,7 +3,7 @@ name: Build and deploy Python app to Azure Web App - swift-shop-wat
 on:
   push:
     branches:
-      - deployment_cbi_analytics
+      - deployment_cbi_analytics_v_2
   workflow_dispatch:
 
 jobs:

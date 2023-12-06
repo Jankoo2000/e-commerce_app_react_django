@@ -67,8 +67,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     # fixed return /images/phone.jpg
-    def get_image(self, obj):
-        return str(obj.image)
+    # def get_image(self, obj):
+    #     return str(obj.image)
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):

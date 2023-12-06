@@ -18,6 +18,7 @@ import {
     ORDER_PAY_SUCCESS
 } from "../constants/orderConstants";
 import {CART_CLEAR_ITEMS} from "../constants/cartConstants";
+import {urlBackned} from "../constants/urlBackned";
 
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -39,7 +40,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.post(
-            `/api/orders/add/`,
+            `${urlBackned}/api/orders/add/`,
             order,
             config,
         )
@@ -86,7 +87,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.get(
-            `/api/orders/${id}/`,
+            `${urlBackned}/api/orders/${id}/`,
             config,
         )
 
@@ -124,7 +125,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.put(
-            `/api/orders/${id}/pay/`,
+            `${urlBackned}/api/orders/${id}/pay/`,
             paymentResult,
             config,
         )
@@ -164,7 +165,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.put(
-            `/api/orders/${order._id}/deliver/`,
+            `${urlBackned}/api/orders/${order._id}/deliver/`,
             {},
             config,
         )
@@ -205,7 +206,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.get(
-            `/api/orders/myorders/`,
+            `${urlBackned}/api/orders/myorders/`,
             config,
         )
 
@@ -244,7 +245,7 @@ export const listOrders = () => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.get(
-            `/api/orders/`,
+            `${urlBackned}/api/orders/`,
             config,
         )
 

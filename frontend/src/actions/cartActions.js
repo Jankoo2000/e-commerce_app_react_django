@@ -5,11 +5,12 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     CART_SAVE_SHIPPING_ADDRESS
 } from "../constants/cartConstants";
+import {urlBackned} from "../constants/urlBackned";
 
 
 // default structure of thunk so dont think about that
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-    const {data} = await axios.get(`/api/products/${id}`)
+    const {data} = await axios.get(`${urlBackned}/api/products/${id}`)
 
     dispatch({
         type: CART_ADD_ITEM,

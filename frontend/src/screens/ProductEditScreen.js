@@ -11,6 +11,7 @@ import {listProductsDetails, updateProduct} from "../actions/productActions";
 import {PRODUCT_UPDATE_RESET} from "../constants/productConstants";
 import {Input} from "postcss";
 import axios from "axios";
+import {urlBackned} from "../constants/urlBackned";
 
 
 function ProductEditScreen() {
@@ -94,7 +95,7 @@ function ProductEditScreen() {
             }
 
             const {data} = await axios.post(
-                '/api/products/upload/',
+                `${urlBackned}/api/products/upload/`,
                 formData,
                 config)
 

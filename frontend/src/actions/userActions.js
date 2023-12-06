@@ -27,6 +27,7 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 import {ORDER_LIST_MY_RESET} from "../constants/orderConstants";
+import {urlBackned} from "../constants/urlBackned";
 
 
 export const login = (email, password) => async (dispatch) => {
@@ -43,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
 
         // logging
         const {data} = await axios.post(
-            '/api/users/login/',
+            `${urlBackned}/api/users/login/`,
             {'username': email, 'password': password}, // data being sent to the server
             config
         )
@@ -102,7 +103,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
         // logging
         const {data} = await axios.post(
-            '/api/users/register/',
+            `${urlBackned}/api/users/register/`,
             {'name': name, 'email': email, 'password': password}, // data being sent to the server
             config
         )
@@ -148,7 +149,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
         // logging
         const {data} = await axios.get(
-            `/api/users/${id}/`,
+            `${urlBackned}/api/users/${id}/`,
             config
         )
 
@@ -188,7 +189,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.put(
-            `/api/users/profile/update/`,
+            `${urlBackned}/api/users/profile/update/`,
             user,
             config,
         )
@@ -235,7 +236,7 @@ export const listUsers = () => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.get(
-            `/api/users/`,
+            `${urlBackned}/api/users/`,
             config,
         )
 
@@ -273,7 +274,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.delete(
-            `/api/users/delete/${id}/`,
+            `${urlBackned}/api/users/delete/${id}/`,
             config,
         )
 
@@ -312,7 +313,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         // logging
         // the order is important :  user, config
         const {data} = await axios.put(
-            `/api/users/update/${user._id}/`,
+            `${urlBackned}/api/users/update/${user._id}/`,
             user,
             config,
         )

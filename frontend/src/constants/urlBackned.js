@@ -1,0 +1,1 @@
+export const urlBackned='https://e-commarce.azurewebsites.net'

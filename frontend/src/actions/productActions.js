@@ -20,6 +20,7 @@ import {
     PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL,
 } from "../constants/productConstants";
 import {ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS} from "../constants/orderConstants";
+import {urlBackned} from "../constants/urlBackned";
 
 // ACTIONS - EVENTS
 // {
@@ -38,8 +39,8 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         })
 
         // const {data} = await axios.get('/api/products/')
-        // const {data} = await axios.get(`/api/products${keyword}`)
-        const {data} = await axios.get(`https://e-commarce.azurewebsites.net/api/products${keyword}`)
+        const {data} = await axios.get(`${urlBackned}/api/products${keyword}`)
+
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -58,7 +59,7 @@ export const listProductsDetails = (id) => async (dispatch) => {
     try {
         // triggers reducer
         dispatch({type: PRODUCT_DETAILS_REQUEST})
-        const {data} = await axios.get(`/api/products/${id}`)
+        const {data} = await axios.get(`${urlBackned}/api/products/${id}`)
 
         // dispatching action
         dispatch({
@@ -93,7 +94,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         }
 
         const {data} = await axios.delete(
-            `/api/products/delete/${id}/`,
+            `${urlBackned}/api/products/delete/${id}/`,
             config,
         )
         console.log("Response Data: " + data)
@@ -131,7 +132,7 @@ export const createProduct = () => async (dispatch, getState) => {
         }
 
         const {data} = await axios.post(
-            `/api/products/create/`,
+            `${urlBackned}/api/products/create/`,
             {},
             config,
         )
@@ -172,7 +173,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         }
 
         const {data} = await axios.put(
-            `/api/products/update/${product._id}/`,
+            `${urlBackned}/api/products/update/${product._id}/`,
             product,
             config,
         )
@@ -209,7 +210,7 @@ export const listTopProducts = () => async (dispatch) => {
         })
 
         // const {data} = await axios.get('/api/products/')
-        const {data} = await axios.get(`/api/products/top/`)
+        const {data} = await axios.get(`${urlBackned}/api/products/top/`)
 
         // dispatching action
         // triggers reducer

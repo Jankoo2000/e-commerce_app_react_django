@@ -38,7 +38,8 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         })
 
         // const {data} = await axios.get('/api/products/')
-        const {data} = await axios.get(`/api/products${keyword}`)
+        // const {data} = await axios.get(`/api/products${keyword}`)
+        const {data} = await axios.get(`https://e-commarce.azurewebsites.net/api/products${keyword}`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,

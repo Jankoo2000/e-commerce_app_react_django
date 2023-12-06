@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://e-commarce.azurewebsites.net/",
+  "proxy": "https://e-commarce.azurewebsites.net",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

@@ -24,7 +24,6 @@ DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net",
-    'https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net/'
 ]
 
 # CORS_ALLOWED_ORIGINS = True

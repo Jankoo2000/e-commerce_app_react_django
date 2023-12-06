@@ -32,7 +32,7 @@ function App() {
                                /> {/* URL ("/") and renders the HomeScreen component when the URL matches exactly */}
                         <Route path='/product/:id' element={<ProductScreen/>}
                                exact/> {/* URLs with a path that starts with "/product/" followed by a dynamic parameter ":id. To access that value use  useParams() hook  */}
-                        <Route path='https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net/cart/:id?' element={<CartScreen/>} exact/>
+                        <Route path='/cart/:id?' element={<CartScreen/>} exact/>
                         <Route path='/login' element={<LoginScreen/>}/>
                         <Route path='/register' element={<RegisterScreen/>}/>
                         <Route path='/profile' element={<ProfileScreen/>}/>

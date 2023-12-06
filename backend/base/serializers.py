@@ -61,7 +61,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     # overwriting image filed because it returns /images/images/phone.jpg
-    image = serializers.SerializerMethodField()
+    # image = serializers.SerializerMethodField()
     class Meta:
         model = OrderItem
         fields = '__all__'

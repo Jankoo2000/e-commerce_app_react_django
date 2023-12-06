@@ -40,8 +40,6 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         // const {data} = await axios.get('/api/products/')
         const {data} = await axios.get(`/api/products${keyword}`)
 
-        // dispatching action
-        // triggers reducer
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data

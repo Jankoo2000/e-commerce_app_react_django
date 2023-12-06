@@ -22,10 +22,12 @@ ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.env
 CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 DEBUG = True
 
-CORS_ALLOWED_ORIGINS = [
-    "https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net",
+#     'https://agreeable-bush-0fae7cb0f.4.azurestaticapps.net/'
+# ]
 
+CORS_ALLOWED_ORIGINS = True
 
 
 INSTALLED_APPS = [

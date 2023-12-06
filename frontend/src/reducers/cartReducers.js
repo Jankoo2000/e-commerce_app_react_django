@@ -26,7 +26,7 @@ import {PRODUCT_LIST_SUCCESS} from "../constants/productConstants";
 export const cartReducer =
     //state (the current state, with a default value of an empty cart) and action (the action dispatched).
     (state = {cartItems: [], shippingAddress: {}}, action) => {
-        console.log('CART REDUCER')
+        // console.log('CART REDUCER')
         switch (action.type) { // entering type filed form action object
             case CART_ADD_ITEM:
                 const item = action.payload

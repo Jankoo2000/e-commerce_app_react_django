@@ -39,7 +39,9 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         })
 
         // const {data} = await axios.get('/api/products/')
-        const {data} = await axios.get(`${urlBackned}/api/products${keyword}`)
+        const {data} = await axios.get(`${urlBackned}/api/products${keyword}`).catch(error => {
+            console.log("ERROR: " + error)
+        });
 
 
         dispatch({

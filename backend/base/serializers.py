@@ -55,7 +55,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_image(self, obj):
-        return DOMAIN + str(obj.image)
+        return str(obj.image)
 
 
 # class OrderItemSerializer(serializers.ModelSerializer):

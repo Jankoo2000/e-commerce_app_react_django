@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from backend.production import DOMAIN
+from backend.production import DOMAIN, MEDIA_URL
 
 
 # is typically used
@@ -55,7 +55,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_image(self, obj):
-        return str(obj.image)
+        return DOMAIN + MEDIA_URL + str(obj.image)
 
 
 # class OrderItemSerializer(serializers.ModelSerializer):

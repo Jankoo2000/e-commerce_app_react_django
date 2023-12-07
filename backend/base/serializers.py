@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
+from backend.production import DOMAIN
 
 
 # is typically used
@@ -48,9 +49,13 @@ class UserSerializerWithToken(UserSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_image(self, obj):
+        return DOMAIN + str(obj.image)
 
 
 # class OrderItemSerializer(serializers.ModelSerializer):
@@ -60,16 +65,11 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    # overwriting image filed because it returns /images/images/phone.jpg
-    image = serializers.SerializerMethodField()
 
     class Meta:
         model = OrderItem
         fields = '__all__'
 
-    # fixed return /images/phone.jpg
-    def get_image(self, obj):
-        return str(obj.image)
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):

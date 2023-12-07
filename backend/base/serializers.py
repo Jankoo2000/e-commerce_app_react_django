@@ -69,7 +69,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     # fixed return /images/phone.jpg
     def get_image(self, obj):
-        return str("https://e-commarce.azurewebsites.net" + obj.image)
+        return str(obj.image)
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):

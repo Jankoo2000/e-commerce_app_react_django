@@ -61,14 +61,15 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     # overwriting image filed because it returns /images/images/phone.jpg
-    # image = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = OrderItem
         fields = '__all__'
 
     # fixed return /images/phone.jpg
-    # def get_image(self, obj):
-    #     return str(obj.image)
+    def get_image(self, obj):
+        return str("https://e-commarce.azurewebsites.net" + obj.image)
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):

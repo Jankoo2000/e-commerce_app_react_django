@@ -43,7 +43,7 @@ export const listProducts = (keyword = '') => async (dispatch) => {
             console.log("ERROR: " + error)
         });
         console.log(data)
-
+        // data.image = urlBackned + data.image
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,

@@ -6,7 +6,7 @@ import {deliverOrder, getOrderDetails, payOrder} from "../actions/orderActions";
 import React, {useEffect, useState} from "react";
 import {ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
 import Loader from "../components/Loader";
-import {PayPalButton} from "react-paypal-button-v2";
+// import {PayPalButton} from "react-paypal-button-v2";
 
 
 function OrderScreen() {
@@ -189,11 +189,11 @@ function OrderScreen() {
                                     {!sdkReady ? (
                                         <Loader/>
                                     ) : (
-                                        <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        />
-
+                                        // <PayPalButton
+                                        //     amount={order.totalPrice}
+                                        //     onSuccess={successPaymentHandler}
+                                        // />
+                                        <H1>ZUPA</H1>
                                     )}
                                 </ListGroup.Item>
                             )}

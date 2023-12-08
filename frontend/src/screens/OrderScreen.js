@@ -6,6 +6,7 @@ import {deliverOrder, getOrderDetails, payOrder} from "../actions/orderActions";
 import React, {useEffect, useState} from "react";
 import {ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
 import Loader from "../components/Loader";
+
 // import {PayPalButton} from "react-paypal-button-v2";
 
 
@@ -194,7 +195,7 @@ function OrderScreen() {
                                         //     onSuccess={successPaymentHandler}
                                         // />
                                         <div class="d-flex justify-content-center">
-                                            <Button style="width: 100%;" disabled>Pay</Button>
+                                            <Button style={{ width: '100%' }} disabled>Pay</Button>
                                         </div>
                                     )}
                                 </ListGroup.Item>

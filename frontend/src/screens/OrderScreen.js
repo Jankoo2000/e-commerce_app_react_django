@@ -193,7 +193,9 @@ function OrderScreen() {
                                         //     amount={order.totalPrice}
                                         //     onSuccess={successPaymentHandler}
                                         // />
-                                        <Button disabled>Pay</Button>
+                                        <div class="d-flex justify-content-center">
+                                            <Button disabled>Pay</Button>
+                                        </div>
                                     )}
                                 </ListGroup.Item>
                             )}

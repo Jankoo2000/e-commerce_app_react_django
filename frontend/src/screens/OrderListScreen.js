@@ -26,7 +26,7 @@ function OrderListScreen() {
         if (userInfo && userInfo.isAdmin)
             dispatch(listOrders())
         else {
-            navigate('/login') // redirected to login in but when i am logged it's redirected to main page
+            navigate('/login')
         }
     }, [dispatch, navigate, userInfo]);
 
@@ -52,7 +52,6 @@ function OrderListScreen() {
                             </thead>
 
                             <tbody>
-                            {/*/!*{users.map((user) => (*!/*!/ thath does not work and i dont know why */}
                             {orders && orders.map((order) => (
                                 <tr key={order._id}>
                                     <td>{order._id}</td>

@@ -13,16 +13,15 @@ function CartScreen({history}) {
     const navigate = useNavigate();
 
     const location = useLocation()
-    const qty = location.search ? Number(location.search.split('=')[1]) : 1 // location seach is begginign with '?' mark
+    const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
 
-    const cart = useSelector(state => state.cart) // cart: cartReducer,
-    const {cartItems} = cart // const cartReducer = (state = {cartItems: []}, action)
+    const cart = useSelector(state => state.cart)
+    const {cartItems} = cart
 
 
     useEffect(() => {
         if (id) {
-            // Dispatch the addToCart action, which is asynchronous
             dispatch(addToCart(id, qty))
         }
     }, [dispatch, id, qty]);

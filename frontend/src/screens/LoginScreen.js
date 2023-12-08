@@ -22,7 +22,7 @@ function LoginScreen() {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect) // redirect to main page
+            navigate(redirect)
         }
     }, [navigate, userLogin, redirect]);
 
@@ -70,9 +70,6 @@ function LoginScreen() {
             <Row className='py-3'>
                 <Col>
                     New Customer?
-                    {/*register -> log out -> again register by button - goes to main page*/}
-                    {/*i dont know wky after tact it GET /api/products/ */}
-                    {/*<Link to="/register"*/}
                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}
                           style={{textDecoration: 'none'}}>
                         Register

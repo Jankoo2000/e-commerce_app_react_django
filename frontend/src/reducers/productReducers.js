@@ -33,8 +33,6 @@ export const productListReducer =
 
             case PRODUCT_LIST_SUCCESS:
                 return {loading: false, products: action.payload}
-            // action.payload is a convention used to describe the data or payload associated with a dispatched action
-
 
             case PRODUCT_LIST_FAIL:
                 return {loading: false, error: action.payload}

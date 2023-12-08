@@ -139,7 +139,7 @@ def update_user(request, pk):
     user = User.objects.get(id=pk)
 
     data = request.data
-    # deserializing
+
     user.first_name = data['name']
     user.username = data['email']
     user.email = data['email']
@@ -152,7 +152,7 @@ def update_user(request, pk):
 
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])  # without ACCESS token is;t not accessible
+@permission_classes([IsAdminUser])
 def delete_user(request, pk):
     user_for_deletion = User.objects.get(id=pk)
     user_for_deletion.delete()

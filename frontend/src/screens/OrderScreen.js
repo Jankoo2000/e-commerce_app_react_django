@@ -7,12 +7,11 @@ import React, {useEffect, useState} from "react";
 import {ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
 import Loader from "../components/Loader";
 
-// import {PayPalButton} from "react-paypal-button-v2";
 
 
 function OrderScreen() {
 
-    const {id} = useParams() // name of variable must be exactly as in route <Route path='/order/:id' element={<OrderScreen/>}
+    const {id} = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

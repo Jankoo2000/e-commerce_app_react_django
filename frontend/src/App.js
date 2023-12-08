@@ -27,11 +27,8 @@ function App() {
                 <Container>
                     <Routes> {/* Wrap Routes around your Route components */}
 
-                        {/* exact prop is used to specify that the route should only be matched when the URL path matches exactly, and not just partially.*/}
-                        <Route path='/' element={<HomeScreen/>}
-                               /> {/* URL ("/") and renders the HomeScreen component when the URL matches exactly */}
-                        <Route path='/product/:id' element={<ProductScreen/>}
-                               exact/> {/* URLs with a path that starts with "/product/" followed by a dynamic parameter ":id. To access that value use  useParams() hook  */}
+                        <Route path='/' element={<HomeScreen/>}/>
+                        <Route path='/product/:id' element={<ProductScreen/>} exact/>
                         <Route path='/cart/:id?' element={<CartScreen/>} exact/>
                         <Route path='/login' element={<LoginScreen/>}/>
                         <Route path='/register' element={<RegisterScreen/>}/>

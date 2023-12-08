@@ -193,7 +193,7 @@ function OrderScreen() {
                                         //     amount={order.totalPrice}
                                         //     onSuccess={successPaymentHandler}
                                         // />
-                                        <h1>ZUPA</h1>
+                                        <Button disabled>Pay</Button>
                                     )}
                                 </ListGroup.Item>
                             )}

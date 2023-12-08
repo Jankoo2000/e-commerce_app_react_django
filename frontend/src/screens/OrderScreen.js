@@ -194,7 +194,7 @@ function OrderScreen() {
                                         //     onSuccess={successPaymentHandler}
                                         // />
                                         <div class="d-flex justify-content-center">
-                                            <Button disabled>Pay</Button>
+                                            <Button style="width: 100%;" disabled>Pay</Button>
                                         </div>
                                     )}
                                 </ListGroup.Item>

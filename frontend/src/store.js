@@ -29,6 +29,7 @@ import {
     orderListReducer,
     orderPayReducer
 } from "./reducers/orderReducers";
+import {flightsListReducer} from "./reducers/flightsReducer";
 
 
 // here are stored all values in these objects
@@ -58,6 +59,8 @@ const reducer = combineReducers({
     orderListMy: orderListMyReducer,
     orderList: orderListReducer,
     orderDeliver: orderDeliverReducer,
+
+    flightList: flightsListReducer,
 
 })
 

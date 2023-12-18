@@ -10,20 +10,17 @@ import ProductCarousel from "../components/ProductCarousel";
 
 function HomeScreen() {
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const [searchParams, setSearchParams] = useSearchParams()
+    const navigateTo = useNavigate();
+    const dispatchAction = useDispatch();
+    const [params, setParams] = useSearchParams();
 
-    const productList = useSelector(state => state.productList)
-    const {error, loading, products} = productList //This line uses object destructuring to extract specific properties from the productList object.
+    const productData = useSelector(state => state.productList);
+    const {error: productError, loading: productLoading, products: productList} = productData;
 
+    const currentLocation = useLocation();
+    const search = currentLocation.search ? '?' + currentLocation.search.split('?')[1] : '';
+    console.log(search);
 
-
-
-
-    const location = useLocation()
-    const keyword = location.search ? '?' + location.search.split('?')[1] : ''
-    console.log(keyword)
 
     // Some hooks, like useEffect and useCallback have 2 arguments. The first one is a callback (a function),
     // and the second one is the dependency array. It takes the form of an array of variables.
@@ -31,33 +28,26 @@ function HomeScreen() {
     // The dependency array basically tells the hook to "only trigger when the dependency array changes".
     // In the above example, it means "run the callback every time the counter variable changes".
     useEffect(() => {
-        dispatch(listProducts(keyword)) // loading data and dispatching it to store ?? productListReducers
-        // }, []);
-    }, [dispatch, keyword]);
-
-
+        dispatchAction(listProducts(search));
+    }, [dispatchAction, search]);
     // }, []); This is a very common pattern when you want to do something at the beginning of the lifecycle of a component,
     // for example to do some data fetching.
 
-
     return (
         <Row>
-            {!keyword && <ProductCarousel/>}
+            {!search && <ProductCarousel/>}
             <h1>Latest Products</h1>
-            {loading ? <Loader></Loader>
-                : error ? <Message variant='danger'>{error}</Message>
-                    :
+            {productLoading ? <Loader/> :
+                productError ? <Message variant='danger'>{productError}</Message> :
                     <Row>
-                        {products.map((product) => (
+                        {productList.map((product) => (
                             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                                 <Product product={product}/>
                             </Col>
                         ))}
                     </Row>}
-
-
         </Row>
-    )
+    );
 }
 
 export default HomeScreen;

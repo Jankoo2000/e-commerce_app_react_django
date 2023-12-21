@@ -1,43 +1,43 @@
 import {
-    USER_LOGIN_REQUEST,
-    USER_LOGIN_FAIL,
-    USER_LOGIN_SUCCESS,
+    REQUEST_USER_LOGIN,
+    FAILURE_USER_LOGIN,
+    SUCCESS_USER_LOGIN,
     USER_LOGOUT,
-    USER_REGISTER_REQUEST,
-    USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAIL,
-    USER_DETAILS_REQUEST,
-    USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,
-    USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL,
-    USER_UPDATE_PROFILE_RESET,
-    USER_DETAILS_RESET,
-    USER_LIST_REQUEST,
-    USER_LIST_SUCCESS,
-    USER_LIST_FAIL,
-    USER_LIST_RESET,
-    USER_DELETE_REQUEST,
-    USER_DELETE_SUCCESS,
-    USER_DELETE_FAIL,
-    USER_UPDATE_REQUEST,
-    USER_UPDATE_SUCCESS,
-    USER_UPDATE_FAIL, USER_UPDATE_RESET
+    REQUEST_USER_REGISTER,
+    SUCCESS_USER_REGISTER,
+    FAILURE_USER_REGISTER,
+    REQUEST_USER_DETAILS,
+    SUCCESS_USER_DETAILS,
+    FAILURE_USER_DETAILS,
+    REQUEST_USER_UPDATE_PROFILE,
+    SUCCESS_USER_UPDATE_PROFILE,
+    FAILURE_USER_UPDATE_PROFILE,
+    RESET_USER_UPDATE_PROFILE,
+    RESET_USER_DETAILS,
+    REQUEST_USER_LIST,
+    SUCCESS_USER_LIST,
+    FAILURE_USER_LIST,
+    RESET_USER_LIST,
+    REQUEST_USER_DELETE,
+    SUCCESS_USER_DELETE,
+    FAILURE_USER_DELETE,
+    REQUEST_USER_UPDATE,
+    SUCCESS_USER_UPDATE,
+    FAILURE_USER_UPDATE, RESET_USER_UPDATE
 } from "../constants/userConstants";
 
 
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
-        case USER_LOGIN_REQUEST:
+        case REQUEST_USER_LOGIN:
             return {loading: true}
 
-        case USER_LOGIN_SUCCESS:
+        case SUCCESS_USER_LOGIN:
             return {loading: false, userInfo: action.payload}
         // action.payload is a convention used to describe the data or payload associated with a dispatched action
         // return to userLogin object {loading: false, userInfo: data}
 
-        case USER_LOGIN_FAIL:
+        case FAILURE_USER_LOGIN:
             return {loading: false, error: action.payload}
 
         case USER_LOGOUT:
@@ -54,15 +54,15 @@ export const userLoginReducer = (state = {}, action) => {
 
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
-        case USER_REGISTER_REQUEST:
+        case REQUEST_USER_REGISTER:
             return {loading: true}
 
-        case USER_REGISTER_SUCCESS:
+        case SUCCESS_USER_REGISTER:
             return {loading: false, userInfo: action.payload}
         // action.payload is a convention used to describe the data or payload associated with a dispatched action
         // return to userLogin object {loading: false, userInfo: data}
 
-        case USER_REGISTER_FAIL:
+        case FAILURE_USER_REGISTER:
             return {loading: false, error: action.payload}
 
         case USER_LOGOUT:
@@ -78,17 +78,17 @@ export const userRegisterReducer = (state = {}, action) => {
 
 export const userDetailsReducer = (state = {user: {}}, action) => {
     switch (action.type) {
-        case USER_DETAILS_REQUEST:
+        case REQUEST_USER_DETAILS:
             return {...state, loading: true}
         // does it return the state so here users that has been registered
 
-        case USER_DETAILS_SUCCESS:
+        case SUCCESS_USER_DETAILS:
             return {loading: false, user: action.payload}
 
-        case USER_DETAILS_FAIL:
+        case FAILURE_USER_DETAILS:
             return {loading: false, error: action.payload}
 
-        case USER_DETAILS_RESET:
+        case RESET_USER_DETAILS:
             return {user: {}}
 
         default:
@@ -101,17 +101,17 @@ export const userDetailsReducer = (state = {user: {}}, action) => {
 
 export const userUpdateProfileReducer = (state = {}, action) => {
     switch (action.type) {
-        case USER_UPDATE_PROFILE_REQUEST:
+        case REQUEST_USER_UPDATE_PROFILE:
             return {loading: true}
         // does it return the state so here users that has been registered
 
-        case USER_UPDATE_PROFILE_SUCCESS:
+        case SUCCESS_USER_UPDATE_PROFILE:
             return {loading: false, success: true, userInfo: action.payload}
 
-        case USER_UPDATE_PROFILE_FAIL:
+        case FAILURE_USER_UPDATE_PROFILE:
             return {loading: false, error: action.payload}
 
-        case USER_UPDATE_PROFILE_RESET:
+        case RESET_USER_UPDATE_PROFILE:
             return {}
         default:
             // If this reducer doesn't recognize the action type, or doesn't
@@ -122,17 +122,17 @@ export const userUpdateProfileReducer = (state = {}, action) => {
 
 export const userListReducer = (state = {user: []}, action) => {
     switch (action.type) {
-        case USER_LIST_REQUEST:
+        case REQUEST_USER_LIST:
             return {loading: true}
         // does it return the state so here users that has been registered
 
-        case USER_LIST_SUCCESS:
+        case SUCCESS_USER_LIST:
             return {loading: false, users: action.payload}
 
-        case USER_LIST_FAIL:
+        case FAILURE_USER_LIST:
             return {loading: false, error: action.payload}
 
-        case USER_LIST_RESET:
+        case RESET_USER_LIST:
             return {users: []}
         default:
             // If this reducer doesn't recognize the action type, or doesn't
@@ -143,14 +143,14 @@ export const userListReducer = (state = {user: []}, action) => {
 
 export const userDeleteReducer = (state = {}, action) => {
     switch (action.type) {
-        case USER_DELETE_REQUEST:
+        case REQUEST_USER_DELETE:
             return {loading: true}
         // does it return the state so here users that has been registered
 
-        case USER_DELETE_SUCCESS:
+        case SUCCESS_USER_DELETE:
             return {loading: false, success: true}
 
-        case USER_DELETE_FAIL:
+        case FAILURE_USER_DELETE:
             return {loading: false, error: action.payload}
 
 
@@ -161,16 +161,16 @@ export const userDeleteReducer = (state = {}, action) => {
 
 export const userUpdateReducer = (state = {user: {}}, action) => {
     switch (action.type) {
-        case USER_UPDATE_REQUEST:
+        case REQUEST_USER_UPDATE:
             return {loading: true}
 
-        case USER_UPDATE_SUCCESS:
+        case SUCCESS_USER_UPDATE:
             return {loading: false, success: true}
 
-        case USER_UPDATE_FAIL:
+        case FAILURE_USER_UPDATE:
             return {loading: false, error: action.payload}
 
-        case USER_UPDATE_RESET:
+        case RESET_USER_UPDATE:
             return {user: {}}
 
 

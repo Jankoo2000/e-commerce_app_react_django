@@ -1,10 +1,10 @@
 import {
-    CART_REMOVE_ITEM,
-    CART_ADD_ITEM,
-    CART_SAVE_SHIPPING_ADDRESS,
-    CART_SAVE_PAYMENT_METHOD, CART_CLEAR_ITEMS
+    REMOVE_ITEM_FROM_CART,
+    ADD_ITEM_TO_CART,
+    SAVE_SHIPPING_ADDRESS_CART,
+    SAVE_PAYMENT_METHOD_CART, CLEAR_ITEMS_CART
 } from "../constants/cartConstants";
-import {PRODUCT_LIST_SUCCESS} from "../constants/productConstants";
+import {FETCH_PRODUCTS_SUCCESS} from "../constants/productConstants";
 
 
 // dispatch(action)
@@ -28,7 +28,7 @@ export const cartReducer =
     (state = {cartItems: [], shippingAddress: {}}, action) => {
         console.log('CART REDUCER')
         switch (action.type) { // entering type filed form action object
-            case CART_ADD_ITEM:
+            case ADD_ITEM_TO_CART:
                 const item = action.payload
                 const existItem = state.cartItems.find(x => x.product === item.product) // entering filed cartItems (state object)
                 // item.product is _id, because it's define in thath way in action
@@ -50,25 +50,25 @@ export const cartReducer =
                     }
                 }
 
-            case CART_REMOVE_ITEM:
+            case REMOVE_ITEM_FROM_CART:
                 return {
                     ...state,
                     cartItems: state.cartItems.filter(x => x.product !== action.payload)
                 }
 
-            case CART_SAVE_SHIPPING_ADDRESS:
+            case SAVE_SHIPPING_ADDRESS_CART:
                 return {
                     ...state,
                     shippingAddress: action.payload
                 }
 
-            case CART_SAVE_PAYMENT_METHOD:
+            case SAVE_PAYMENT_METHOD_CART:
                 return {
                     ...state,
                     paymentMethod: action.payload
                 }
 
-            case CART_CLEAR_ITEMS:
+            case CLEAR_ITEMS_CART:
                 return {
                     ...state,
                     cartItems: []

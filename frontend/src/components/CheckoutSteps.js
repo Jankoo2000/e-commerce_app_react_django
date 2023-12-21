@@ -1,51 +1,34 @@
-import Nav from "react-bootstrap/Nav";
+
+
+import React from "react";
+import {Nav} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 
 function CheckoutSteps({step1, step2, step3, step4}) {
+    const stepInfo = [
+        {step: 'login', label: 'Login', isEnabled: step1},
+        {step: 'shipping', label: 'Shipping', isEnabled: step2},
+        {step: 'payment', label: 'Payment', isEnabled: step3},
+        {step: 'placeorder', label: 'Place Order', isEnabled: step4}
+    ];
+
+    const renderStep = ({step, label, isEnabled}) => (
+        <Nav.Item key={step}>
+            {isEnabled ? (
+                <LinkContainer to={`/${step}`}>
+                    <Nav.Link>{label}</Nav.Link>
+                </LinkContainer>
+            ) : (
+                <Nav.Link disabled>{label}</Nav.Link>
+            )}
+        </Nav.Item>
+    );
+
     return (
         <Nav className='justify-content-md-center mb-4'>
-            <Nav.Item>
-                {step1 ? (
-                    <LinkContainer to={'/login'}>
-                        <Nav.Link>Login</Nav.Link>
-                    </LinkContainer>
-                ) : (
-                    <Nav.Link disabled>Login</Nav.Link>
-                )}
-            </Nav.Item>
-
-            <Nav.Item>
-                {step2 ? (
-                    <LinkContainer to={'/shipping'}>
-                        <Nav.Link>Shipping</Nav.Link>
-                    </LinkContainer>
-                ) : (
-                    <Nav.Link disabled>Shipping</Nav.Link>
-                )}
-            </Nav.Item>
-
-            <Nav.Item>
-                {step3 ? (
-                    <LinkContainer to={'/payment'}>
-                        <Nav.Link>Payment</Nav.Link>
-                    </LinkContainer>
-                ) : (
-                    <Nav.Link disabled>Payment</Nav.Link>
-                )}
-            </Nav.Item>
-
-            <Nav.Item>
-                {step4 ? (
-                    <LinkContainer to={'/placeorder'}>
-                        <Nav.Link>Place Order</Nav.Link>
-                    </LinkContainer>
-                ) : (
-                    <Nav.Link disabled>Place Order</Nav.Link>
-                )}
-            </Nav.Item>
-
+            {stepInfo.map((step) => renderStep(step))}
         </Nav>
-    )
+    );
 }
 
-export default CheckoutSteps
+export default CheckoutSteps;

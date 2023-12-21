@@ -1,25 +1,25 @@
 import axios from 'axios'
 import {
-    PRODUCT_LIST_REQUEST,
-    PRODUCT_LIST_SUCCESS,
-    PRODUCT_LIST_FAIL,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAIL,
 
-    PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_DETAILS_FAIL,
-    PRODUCT_DETAILS_REQUEST,
-    PRODUCT_DELETE_REQUEST,
-    PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_FAIL,
-    PRODUCT_CREATE_REQUEST,
-    PRODUCT_CREATE_SUCCESS,
-    PRODUCT_CREATE_FAIL,
-    PRODUCT_UPDATE_REQUEST,
-    PRODUCT_UPDATE_SUCCESS,
-    PRODUCT_UPDATE_FAIL,
-    PRODUCT_TOP_REQUEST,
-    PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL,
+    FETCH_PRODUCT_DETAILS_SUCCESS,
+    FETCH_PRODUCT_DETAILS_FAIL,
+    FETCH_PRODUCT_DETAILS_REQUEST,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS,
+    DELETE_PRODUCT_FAIL,
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_FAIL,
+    UPDATE_PRODUCT_REQUEST,
+    UPDATE_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_FAIL,
+    FETCH_TOP_PRODUCTS_REQUEST,
+    FETCH_TOP_PRODUCTS_SUCCESS, FETCH_TOP_PRODUCTS_FAIL,
 } from "../constants/productConstants";
-import {ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS} from "../constants/orderConstants";
+import {LIST_MY_ORDERS_FAIL, LIST_MY_ORDERS_REQUEST, LIST_MY_ORDERS_SUCCESS} from "../constants/orderConstants";
 
 // ACTIONS - EVENTS
 // {
@@ -34,7 +34,7 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         // triggers reducer ??(filters the possible reducers by type (switch(action.type))??
 
         dispatch({
-            type: PRODUCT_LIST_REQUEST
+            type: FETCH_PRODUCTS_REQUEST
         })
 
         // const {data} = await axios.get('/api/products/')
@@ -43,12 +43,12 @@ export const listProducts = (keyword = '') => async (dispatch) => {
         // dispatching action
         // triggers reducer
         dispatch({
-            type: PRODUCT_LIST_SUCCESS,
+            type: FETCH_PRODUCTS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: PRODUCT_LIST_FAIL,
+            type: FETCH_PRODUCTS_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
         })
     }
@@ -58,17 +58,17 @@ export const listProducts = (keyword = '') => async (dispatch) => {
 export const listProductsDetails = (id) => async (dispatch) => {
     try {
         // triggers reducer
-        dispatch({type: PRODUCT_DETAILS_REQUEST})
+        dispatch({type: FETCH_PRODUCT_DETAILS_REQUEST})
         const {data} = await axios.get(`/api/products/${id}`)
 
         // dispatching action
         dispatch({
-            type: PRODUCT_DETAILS_SUCCESS,
+            type: FETCH_PRODUCT_DETAILS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: PRODUCT_DETAILS_FAIL,
+            type: FETCH_PRODUCT_DETAILS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -80,7 +80,7 @@ export const listProductsDetails = (id) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: PRODUCT_DELETE_REQUEST
+            type: DELETE_PRODUCT_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -100,13 +100,13 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         console.log("Response Data: " + data)
 
         dispatch({
-            type: PRODUCT_DELETE_SUCCESS,
+            type: DELETE_PRODUCT_SUCCESS,
         })
 
 
     } catch (error) {
         dispatch({
-            type: PRODUCT_DELETE_FAIL,
+            type: DELETE_PRODUCT_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -118,7 +118,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const createProduct = () => async (dispatch, getState) => {
     try {
         dispatch({
-            type: PRODUCT_CREATE_REQUEST
+            type: CREATE_PRODUCT_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -139,14 +139,14 @@ export const createProduct = () => async (dispatch, getState) => {
         console.log("Response Data: " + data)
 
         dispatch({
-            type: PRODUCT_CREATE_SUCCESS,
+            type: CREATE_PRODUCT_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: PRODUCT_CREATE_FAIL,
+            type: CREATE_PRODUCT_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -159,7 +159,7 @@ export const createProduct = () => async (dispatch, getState) => {
 export const updateProduct = (product) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: PRODUCT_UPDATE_REQUEST
+            type: UPDATE_PRODUCT_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -180,19 +180,19 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         console.log("Response Data: " + data)
 
         dispatch({
-            type: PRODUCT_UPDATE_SUCCESS,
+            type: UPDATE_PRODUCT_SUCCESS,
             payload: data,
         })
 
         dispatch({
-            type: PRODUCT_DETAILS_SUCCESS,
+            type: FETCH_PRODUCT_DETAILS_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: PRODUCT_UPDATE_FAIL,
+            type: UPDATE_PRODUCT_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -206,7 +206,7 @@ export const listTopProducts = () => async (dispatch) => {
     try {
 
         dispatch({
-            type: PRODUCT_TOP_REQUEST
+            type: FETCH_TOP_PRODUCTS_REQUEST
         })
 
         // const {data} = await axios.get('/api/products/')
@@ -215,12 +215,12 @@ export const listTopProducts = () => async (dispatch) => {
         // dispatching action
         // triggers reducer
         dispatch({
-            type: PRODUCT_TOP_SUCCESS,
+            type: FETCH_TOP_PRODUCTS_SUCCESS,
             payload: data
         })
     } catch (error) {
         dispatch({
-            type: PRODUCT_TOP_FAIL,
+            type: FETCH_TOP_PRODUCTS_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
         })
     }

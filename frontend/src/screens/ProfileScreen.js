@@ -6,7 +6,7 @@ import {getUserDetails, register, updateUserProfile} from "../actions/userAction
 import {userDetailsReducer} from "../reducers/userReducer";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import {USER_UPDATE_PROFILE_RESET} from "../constants/userConstants";
+import {RESET_USER_UPDATE_PROFILE} from "../constants/userConstants";
 import {listMyOrders} from "../actions/orderActions";
 import {LinkContainer} from "react-router-bootstrap";
 
@@ -46,7 +46,7 @@ function ProfileScreen() {
         } else {
             if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({
-                        type: USER_UPDATE_PROFILE_RESET
+                        type: RESET_USER_UPDATE_PROFILE
                     }
                 )
                 dispatch(getUserDetails('profile'))

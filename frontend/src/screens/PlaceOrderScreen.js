@@ -5,7 +5,7 @@ import Message from "../components/Message";
 import {Link, useNavigate} from "react-router-dom";
 import {createOrder} from "../actions/orderActions";
 import {useEffect} from "react";
-import {ORDER_CREATE_RESET} from "../constants/orderConstants";
+import {CREATE_ORDER_RESET} from "../constants/orderConstants";
 
 
 function PlaceOrderScreen() {
@@ -38,7 +38,7 @@ function PlaceOrderScreen() {
             navigate(`/order/${order._id}`)
             // deleteing order create but it's already saved in database
             dispatch({
-                type: ORDER_CREATE_RESET,
+                type: CREATE_ORDER_RESET,
             })
         }
     }, [success, history]);

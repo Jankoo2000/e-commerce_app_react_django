@@ -7,7 +7,7 @@ import {Button, Col, Row, Table} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {createProduct, deleteProduct, listProducts} from "../actions/productActions";
-import {PRODUCT_CREATE_RESET} from "../constants/productConstants";
+import {CREATE_PRODUCT_RESET} from "../constants/productConstants";
 
 
 function ProductListScreen() {
@@ -31,7 +31,7 @@ function ProductListScreen() {
 
     // to prevent no admin going to get list of users
     useEffect(() => {
-        dispatch({type: PRODUCT_CREATE_RESET})
+        dispatch({type: CREATE_PRODUCT_RESET})
 
         if (!userInfo && userInfo.isAdmin) {
             navigate('/login') // redirected to login in but when i am logged it's redirected to main page

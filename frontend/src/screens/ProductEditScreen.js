@@ -6,9 +6,9 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {getUserDetails, updateUser} from "../actions/userActions";
-import {USER_UPDATE_RESET} from "../constants/userConstants";
+import {RESET_USER_UPDATE} from "../constants/userConstants";
 import {listProductsDetails, updateProduct} from "../actions/productActions";
-import {PRODUCT_UPDATE_RESET} from "../constants/productConstants";
+import {UPDATE_PRODUCT_RESET} from "../constants/productConstants";
 import {Input} from "postcss";
 import axios from "axios";
 
@@ -42,7 +42,7 @@ function ProductEditScreen() {
 
         if (successUpdate) {
             dispatch({
-                type: PRODUCT_UPDATE_RESET,
+                type: UPDATE_PRODUCT_RESET,
             })
             navigate('/admin/productlist')
         } else {

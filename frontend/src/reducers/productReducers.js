@@ -1,21 +1,21 @@
 import {
-    PRODUCT_LIST_REQUEST,
-    PRODUCT_LIST_SUCCESS,
-    PRODUCT_LIST_FAIL,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAIL,
 
-    PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_DETAILS_FAIL,
-    PRODUCT_DETAILS_REQUEST,
-    PRODUCT_DELETE_REQUEST,
-    PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_FAIL,
-    PRODUCT_CREATE_REQUEST,
-    PRODUCT_CREATE_SUCCESS,
-    PRODUCT_CREATE_FAIL,
-    PRODUCT_CREATE_RESET,
-    PRODUCT_UPDATE_REQUEST,
-    PRODUCT_UPDATE_SUCCESS,
-    PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_RESET, PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_TOP_REQUEST
+    FETCH_PRODUCT_DETAILS_SUCCESS,
+    FETCH_PRODUCT_DETAILS_FAIL,
+    FETCH_PRODUCT_DETAILS_REQUEST,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS,
+    DELETE_PRODUCT_FAIL,
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_FAIL,
+    CREATE_PRODUCT_RESET,
+    UPDATE_PRODUCT_REQUEST,
+    UPDATE_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_FAIL, UPDATE_PRODUCT_RESET, FETCH_TOP_PRODUCTS_SUCCESS, FETCH_TOP_PRODUCTS_FAIL, FETCH_TOP_PRODUCTS_REQUEST
 } from "../constants/productConstants";
 
 export const productListReducer =
@@ -28,15 +28,15 @@ export const productListReducer =
     // (state = initialState, action) => {
     (state = {products: []}, action) => {
         switch (action.type) {
-            case PRODUCT_LIST_REQUEST:
+            case FETCH_PRODUCTS_REQUEST:
                 return {loading: true, products: []}
 
-            case PRODUCT_LIST_SUCCESS:
+            case FETCH_PRODUCTS_SUCCESS:
                 return {loading: false, products: action.payload}
             // action.payload is a convention used to describe the data or payload associated with a dispatched action
 
 
-            case PRODUCT_LIST_FAIL:
+            case FETCH_PRODUCTS_FAIL:
                 return {loading: false, error: action.payload}
             default:
                 return state
@@ -47,14 +47,14 @@ export const productListReducer =
 export const productDetailsReducer =
     (state = {product: {reviews: []}}, action) => {
         switch (action.type) {
-            case PRODUCT_DETAILS_REQUEST: // case defined in action
+            case FETCH_PRODUCT_DETAILS_REQUEST: // case defined in action
                 // that has all the existing state data
                 return {loading: true, ...state}
 
-            case PRODUCT_DETAILS_SUCCESS:
+            case FETCH_PRODUCT_DETAILS_SUCCESS:
                 return {loading: false, product: action.payload}
 
-            case PRODUCT_DETAILS_FAIL:
+            case FETCH_PRODUCT_DETAILS_FAIL:
                 return {loading: false, error: action.payload}
             default:
                 return state
@@ -63,14 +63,14 @@ export const productDetailsReducer =
 
 export const productDeleteReducer = (state = {}, action) => {
     switch (action.type) {
-        case PRODUCT_DELETE_REQUEST: // case defined in action
+        case DELETE_PRODUCT_REQUEST: // case defined in action
             // that has all the existing state data
             return {loading: true}
 
-        case PRODUCT_DELETE_SUCCESS:
+        case DELETE_PRODUCT_SUCCESS:
             return {loading: false, success: true}
 
-        case PRODUCT_DELETE_FAIL:
+        case DELETE_PRODUCT_FAIL:
             return {loading: false, success: action.payload}
 
         default:
@@ -80,17 +80,17 @@ export const productDeleteReducer = (state = {}, action) => {
 
 export const productCreateReducer = (state = {}, action) => {
     switch (action.type) {
-        case PRODUCT_CREATE_REQUEST: // case defined in action
+        case CREATE_PRODUCT_REQUEST: // case defined in action
             // that has all the existing state data
             return {loading: true}
 
-        case PRODUCT_CREATE_SUCCESS:
+        case CREATE_PRODUCT_SUCCESS:
             return {loading: false, success: true, product: action.payload}
 
-        case PRODUCT_CREATE_FAIL:
+        case CREATE_PRODUCT_FAIL:
             return {loading: false, success: action.payload}
 
-        case PRODUCT_CREATE_RESET:
+        case CREATE_PRODUCT_RESET:
             return {}
 
         default:
@@ -101,16 +101,16 @@ export const productCreateReducer = (state = {}, action) => {
 
 export const productUpdateReducer = (state = {product: {}}, action) => {
     switch (action.type) {
-        case PRODUCT_UPDATE_REQUEST:
+        case UPDATE_PRODUCT_REQUEST:
             return {loading: true}
 
-        case PRODUCT_UPDATE_SUCCESS:
+        case UPDATE_PRODUCT_SUCCESS:
             return {loading: false, success: true, product: action.payload}
 
-        case PRODUCT_UPDATE_FAIL:
+        case UPDATE_PRODUCT_FAIL:
             return {loading: false, success: action.payload}
 
-        case PRODUCT_UPDATE_RESET:
+        case UPDATE_PRODUCT_RESET:
             return {product: {}}
 
         default:
@@ -122,14 +122,14 @@ export const productUpdateReducer = (state = {product: {}}, action) => {
 export const productTopRatedReducer =
     (state = {products: []}, action) => {
         switch (action.type) {
-            case PRODUCT_TOP_REQUEST: // case defined in action
+            case FETCH_TOP_PRODUCTS_REQUEST: // case defined in action
                 // that has all the existing state data
                 return {loading: true, products: []}
 
-            case PRODUCT_TOP_SUCCESS:
+            case FETCH_TOP_PRODUCTS_SUCCESS:
                 return {loading: false, products: action.payload}
 
-            case PRODUCT_TOP_FAIL:
+            case FETCH_TOP_PRODUCTS_FAIL:
                 return {loading: false, error: action.payload}
             default:
                 return state

@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {getUserDetails, updateUser} from "../actions/userActions";
-import {USER_UPDATE_RESET} from "../constants/userConstants";
+import {RESET_USER_UPDATE} from "../constants/userConstants";
 
 
 function UserEditScreen() {
@@ -34,7 +34,7 @@ function UserEditScreen() {
 
         if (successUpdate) {
             dispatch({
-                type: USER_UPDATE_RESET,
+                type: RESET_USER_UPDATE,
             })
             navigate('/admin/userlist')
         } else {

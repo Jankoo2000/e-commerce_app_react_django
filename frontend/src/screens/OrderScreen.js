@@ -4,7 +4,7 @@ import Message from "../components/Message";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {deliverOrder, getOrderDetails, payOrder} from "../actions/orderActions";
 import React, {useEffect, useState} from "react";
-import {ORDER_CREATE_RESET, ORDER_DELIVER_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
+import {CREATE_ORDER_RESET, DELIVER_ORDER_RESET, PAY_ORDER_RESET} from "../constants/orderConstants";
 import Loader from "../components/Loader";
 // import {PayPalButton} from "react-paypal-button-v2";
 
@@ -51,8 +51,8 @@ function OrderScreen() {
     useEffect(() => {
 
         if (!order || order._id !== Number(id) || successPay || successDeliver) {
-            dispatch({type: ORDER_PAY_RESET})
-            dispatch({type: ORDER_DELIVER_RESET})
+            dispatch({type: PAY_ORDER_RESET})
+            dispatch({type: DELIVER_ORDER_RESET})
 
             dispatch(getOrderDetails(id))
         } else if (!order.isPaid) {
@@ -193,7 +193,7 @@ function OrderScreen() {
                                         //     amount={order.totalPrice}
                                         //     onSuccess={successPaymentHandler}
                                         // />
-                                        <H1>ZUPA</H1>
+                                        <h1>ZUPA</h1>
                                     )}
                                 </ListGroup.Item>
                             )}

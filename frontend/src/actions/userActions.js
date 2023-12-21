@@ -1,38 +1,38 @@
 import {
-    USER_LOGIN_REQUEST,
+    REQUEST_USER_LOGIN,
 
-    USER_LOGIN_FAIL,
-    USER_LOGIN_SUCCESS,
+    FAILURE_USER_LOGIN,
+    SUCCESS_USER_LOGIN,
     USER_LOGOUT,
-    USER_REGISTER_REQUEST,
-    USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAIL,
-    USER_DETAILS_REQUEST,
-    USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,
-    USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL,
-    USER_DETAILS_RESET,
-    USER_LIST_REQUEST,
-    USER_LIST_SUCCESS,
-    USER_LIST_FAIL,
-    USER_LIST_RESET,
-    USER_DELETE_REQUEST,
-    USER_DELETE_SUCCESS,
-    USER_DELETE_FAIL,
-    USER_UPDATE_REQUEST,
-    USER_UPDATE_SUCCESS,
-    USER_UPDATE_FAIL
+    REQUEST_USER_REGISTER,
+    SUCCESS_USER_REGISTER,
+    FAILURE_USER_REGISTER,
+    REQUEST_USER_DETAILS,
+    SUCCESS_USER_DETAILS,
+    FAILURE_USER_DETAILS,
+    REQUEST_USER_UPDATE_PROFILE,
+    SUCCESS_USER_UPDATE_PROFILE,
+    FAILURE_USER_UPDATE_PROFILE,
+    RESET_USER_DETAILS,
+    REQUEST_USER_LIST,
+    SUCCESS_USER_LIST,
+    FAILURE_USER_LIST,
+    RESET_USER_LIST,
+    REQUEST_USER_DELETE,
+    SUCCESS_USER_DELETE,
+    FAILURE_USER_DELETE,
+    REQUEST_USER_UPDATE,
+    SUCCESS_USER_UPDATE,
+    FAILURE_USER_UPDATE
 } from "../constants/userConstants";
 import axios from "axios";
-import {ORDER_LIST_MY_RESET} from "../constants/orderConstants";
+import {LIST_MY_ORDERS_RESET} from "../constants/orderConstants";
 
 
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
-            type: USER_LOGIN_REQUEST
+            type: REQUEST_USER_LOGIN
         })
 
         const config = {
@@ -50,7 +50,7 @@ export const login = (email, password) => async (dispatch) => {
 
         // triggers reducer
         dispatch({
-            type: USER_LOGIN_SUCCESS,
+            type: SUCCESS_USER_LOGIN,
             payload: data,
         })
 
@@ -58,7 +58,7 @@ export const login = (email, password) => async (dispatch) => {
 
     } catch (error) {
         dispatch({
-            type: USER_LOGIN_FAIL,
+            type: FAILURE_USER_LOGIN,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -77,13 +77,13 @@ export const logout = () => (dispatch) => {
     // log in ->log out -> log in to another account -> check data user profile (displaying old data from previous log in
     // -> rehresh -> actual data profile
     dispatch({
-        type: USER_DETAILS_RESET,
+        type: RESET_USER_DETAILS,
     })
     dispatch({
-        type: ORDER_LIST_MY_RESET,
+        type: LIST_MY_ORDERS_RESET,
     })
     dispatch({
-        type: USER_LIST_RESET,
+        type: RESET_USER_LIST,
     })
 }
 
@@ -91,7 +91,7 @@ export const logout = () => (dispatch) => {
 export const register = (name, email, password) => async (dispatch) => {
     try {
         dispatch({
-            type: USER_REGISTER_REQUEST
+            type: REQUEST_USER_REGISTER
         })
 
         const config = {
@@ -109,12 +109,12 @@ export const register = (name, email, password) => async (dispatch) => {
 
         // triggers reducer
         dispatch({
-            type: USER_REGISTER_SUCCESS,
+            type: SUCCESS_USER_REGISTER,
             payload: data,
         })
 
         dispatch({
-            type: USER_LOGIN_SUCCESS,
+            type: SUCCESS_USER_LOGIN,
             payload: data,
         })
 
@@ -122,7 +122,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     } catch (error) {
         dispatch({
-            type: USER_REGISTER_FAIL,
+            type: FAILURE_USER_REGISTER,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
@@ -134,7 +134,7 @@ export const register = (name, email, password) => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: USER_DETAILS_REQUEST
+            type: REQUEST_USER_DETAILS
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -154,14 +154,14 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
 
         dispatch({
-            type: USER_DETAILS_SUCCESS,
+            type: SUCCESS_USER_DETAILS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: USER_DETAILS_FAIL,
+            type: FAILURE_USER_DETAILS,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
@@ -173,7 +173,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 export const updateUserProfile = (user) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: USER_UPDATE_PROFILE_REQUEST
+            type: REQUEST_USER_UPDATE_PROFILE
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -194,12 +194,12 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: USER_UPDATE_PROFILE_SUCCESS,
+            type: SUCCESS_USER_UPDATE_PROFILE,
             payload: data,
         })
 
         dispatch({
-            type: USER_LOGIN_SUCCESS,
+            type: SUCCESS_USER_LOGIN,
             payload: data,
         })
 
@@ -208,7 +208,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: USER_UPDATE_PROFILE_FAIL,
+            type: FAILURE_USER_UPDATE_PROFILE,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
@@ -220,7 +220,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 export const listUsers = () => async (dispatch, getState) => {
     try {
         dispatch({
-            type: USER_LIST_REQUEST
+            type: REQUEST_USER_LIST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -240,13 +240,13 @@ export const listUsers = () => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: USER_LIST_SUCCESS,
+            type: SUCCESS_USER_LIST,
             payload: data,
         })
 
     } catch (error) {
         dispatch({
-            type: USER_LIST_FAIL,
+            type: FAILURE_USER_LIST,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
@@ -258,7 +258,7 @@ export const listUsers = () => async (dispatch, getState) => {
 export const deleteUser = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: USER_DELETE_REQUEST
+            type: REQUEST_USER_DELETE
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -278,13 +278,13 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: USER_DELETE_SUCCESS,
+            type: SUCCESS_USER_DELETE,
             payload: data,
         })
 
     } catch (error) {
         dispatch({
-            type: USER_DELETE_FAIL,
+            type: FAILURE_USER_DELETE,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
@@ -297,7 +297,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
     try {
         console.log('USER _ID: ' + user._id )
         dispatch({
-            type: USER_UPDATE_REQUEST
+            type: REQUEST_USER_UPDATE
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -318,17 +318,17 @@ export const updateUser = (user) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: USER_UPDATE_SUCCESS,
+            type: SUCCESS_USER_UPDATE,
         })
 
         dispatch({
-            type: USER_DETAILS_SUCCESS,
+            type: SUCCESS_USER_DETAILS,
             payload: data
         })
 
     } catch (error) {
         dispatch({
-            type: USER_UPDATE_FAIL,
+            type: FAILURE_USER_UPDATE,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)

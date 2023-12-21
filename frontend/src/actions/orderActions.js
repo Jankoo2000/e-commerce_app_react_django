@@ -1,29 +1,29 @@
 import {
-    USER_LOGIN_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL,
-    USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS
+    SUCCESS_USER_LOGIN,
+    FAILURE_USER_UPDATE_PROFILE,
+    REQUEST_USER_UPDATE_PROFILE,
+    SUCCESS_USER_UPDATE_PROFILE
 } from "../constants/userConstants";
 import axios from "axios";
 import {
-    ORDER_CREATE_FAIL,
-    ORDER_CREATE_REQUEST,
-    ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS,
-    ORDER_DETAILS_FAIL,
-    ORDER_DETAILS_REQUEST,
-    ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL,
-    ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS,
-    ORDER_PAY_FAIL,
-    ORDER_PAY_REQUEST,
-    ORDER_PAY_SUCCESS
+    CREATE_ORDER_FAIL,
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS, DELIVER_ORDER_FAIL, DELIVER_ORDER_REQUEST, DELIVER_ORDER_SUCCESS,
+    GET_ORDER_DETAILS_FAIL,
+    GET_ORDER_DETAILS_REQUEST,
+    GET_ORDER_DETAILS_SUCCESS, LIST_ORDERS_FAIL, LIST_MY_ORDERS_FAIL,
+    LIST_MY_ORDERS_REQUEST, LIST_MY_ORDERS_SUCCESS, LIST_ORDERS_REQUEST, LIST_ORDERS_SUCCESS,
+    PAY_ORDER_FAIL,
+    PAY_ORDER_REQUEST,
+    PAY_ORDER_SUCCESS
 } from "../constants/orderConstants";
-import {CART_CLEAR_ITEMS} from "../constants/cartConstants";
+import {CLEAR_ITEMS_CART} from "../constants/cartConstants";
 
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_CREATE_REQUEST
+            type: CREATE_ORDER_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -45,20 +45,20 @@ export const createOrder = (order) => async (dispatch, getState) => {
         )
         console.log(data)
         dispatch({
-            type: ORDER_CREATE_SUCCESS,
+            type: CREATE_ORDER_SUCCESS,
             payload: data,
         })
 
 
         dispatch({
-            type: CART_CLEAR_ITEMS,
+            type: CLEAR_ITEMS_CART,
             payload: data,
         })
         localStorage.removeItem('cartItems')
 
     } catch (error) {
         dispatch({
-            type: ORDER_CREATE_FAIL,
+            type: CREATE_ORDER_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -70,7 +70,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 export const getOrderDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_DETAILS_REQUEST
+            type: GET_ORDER_DETAILS_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -91,14 +91,14 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: ORDER_DETAILS_SUCCESS,
+            type: GET_ORDER_DETAILS_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: ORDER_DETAILS_FAIL,
+            type: GET_ORDER_DETAILS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -108,7 +108,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_PAY_REQUEST
+            type: PAY_ORDER_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -130,14 +130,14 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: ORDER_PAY_SUCCESS,
+            type: PAY_ORDER_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: ORDER_PAY_FAIL,
+            type: PAY_ORDER_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -148,7 +148,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
 export const deliverOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_DELIVER_REQUEST
+            type: DELIVER_ORDER_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -170,14 +170,14 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: ORDER_DELIVER_SUCCESS,
+            type: DELIVER_ORDER_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: ORDER_DELIVER_FAIL,
+            type: DELIVER_ORDER_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -189,7 +189,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
 export const listMyOrders = () => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_LIST_MY_REQUEST
+            type: LIST_MY_ORDERS_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -210,14 +210,14 @@ export const listMyOrders = () => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: ORDER_LIST_MY_SUCCESS,
+            type: LIST_MY_ORDERS_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: ORDER_LIST_MY_FAIL,
+            type: LIST_MY_ORDERS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
@@ -228,7 +228,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
 export const listOrders = () => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_LIST_REQUEST
+            type: LIST_ORDERS_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -249,14 +249,14 @@ export const listOrders = () => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: ORDER_LIST_SUCCESS,
+            type: LIST_ORDERS_SUCCESS,
             payload: data,
         })
 
 
     } catch (error) {
         dispatch({
-            type: ORDER_LIST_FAIL,
+            type: LIST_ORDERS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,

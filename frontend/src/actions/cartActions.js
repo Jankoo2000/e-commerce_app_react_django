@@ -1,9 +1,9 @@
 import axios from "axios";
 import {
-    CART_ADD_ITEM,
-    CART_REMOVE_ITEM,
-    CART_SAVE_PAYMENT_METHOD,
-    CART_SAVE_SHIPPING_ADDRESS
+    ADD_ITEM_TO_CART,
+    REMOVE_ITEM_FROM_CART,
+    SAVE_PAYMENT_METHOD_CART,
+    SAVE_SHIPPING_ADDRESS_CART
 } from "../constants/cartConstants";
 
 
@@ -12,7 +12,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     const {data} = await axios.get(`/api/products/${id}`)
 
     dispatch({
-        type: CART_ADD_ITEM,
+        type: ADD_ITEM_TO_CART,
         payload: {
             product: data._id,
             name: data.name,
@@ -37,7 +37,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 export const removeFromCart = (id) => (dispatch, getState) => {
 
     dispatch({
-        type: CART_REMOVE_ITEM,
+        type: REMOVE_ITEM_FROM_CART,
         payload: id,
     })
     // after this dispatch , cartReducer response and it updates cartItems
@@ -50,7 +50,7 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 export const saveShippingAddress = (data) => (dispatch) => {
 
     dispatch({
-        type: CART_SAVE_SHIPPING_ADDRESS,
+        type: SAVE_SHIPPING_ADDRESS_CART,
         payload: data,
     })
     // after this dispatch , cartReducer response and it updates cartItems
@@ -62,7 +62,7 @@ export const saveShippingAddress = (data) => (dispatch) => {
 export const savePaymentMethod = (data) => (dispatch) => {
 
     dispatch({
-        type: CART_SAVE_PAYMENT_METHOD,
+        type: SAVE_PAYMENT_METHOD_CART,
         payload: data,
     })
     // after this dispatch , cartReducer response and it updates cartItems

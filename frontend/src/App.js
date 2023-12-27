@@ -18,6 +18,8 @@ import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import FlightsScreen from "./screens/FlightsScreen";
+import CurrencyScreen from "./screens/CurrencyScreen";
+import NewsScreen from "./screens/NewsScreen";
 
 function App() {
     return (
@@ -30,7 +32,7 @@ function App() {
 
                         {/* exact prop is used to specify that the route should only be matched when the URL path matches exactly, and not just partially.*/}
                         <Route path='/' element={<HomeScreen/>}
-                               /> {/* URL ("/") and renders the HomeScreen component when the URL matches exactly */}
+                        /> {/* URL ("/") and renders the HomeScreen component when the URL matches exactly */}
                         <Route path='/product/:id' element={<ProductScreen/>}
                                exact/> {/* URLs with a path that starts with "/product/" followed by a dynamic parameter ":id. To access that value use  useParams() hook  */}
                         <Route path='/cart/:id?' element={<CartScreen/>} exact/>
@@ -43,6 +45,8 @@ function App() {
                         <Route path='/order/:id' element={<OrderScreen/>}/>
 
                         <Route path='/flights' element={<FlightsScreen/>}/>
+                        <Route path='/currency' element={<CurrencyScreen/>}/>
+                        <Route path='/news' element={<NewsScreen/>}/>
 
 
                         <Route path='/admin/userlist' element={<UserListScreen/>}/>

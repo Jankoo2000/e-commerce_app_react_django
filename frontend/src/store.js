@@ -30,6 +30,10 @@ import {
     orderPayReducer
 } from "./reducers/orderReducers";
 import {flightsListReducer} from "./reducers/flightsReducer";
+import {currencyListReducer} from "./reducers/currencyReducers";
+import {useDispatch} from "react-redux";
+import {currencyActions} from "./actions/currencyActions";
+import {newsListReducer} from "./reducers/newsReducer";
 
 
 // here are stored all values in these objects
@@ -61,9 +65,10 @@ const reducer = combineReducers({
     orderDeliver: orderDeliverReducer,
 
     flightList: flightsListReducer,
+    currencyList: currencyListReducer,
+    newsList: newsListReducer,
 
 })
-
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
@@ -76,7 +81,9 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSO
 const initialState = {
     cart: {
         cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage,
-    }, userLogin: {userInfo: userInfoFromStorage}
+    },
+    userLogin: {userInfo: userInfoFromStorage},
+    newsList: {loading: true}
 }
 
 

@@ -1,6 +1,26 @@
+@media (min-width: 993px) {
+  .flight-icon {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 26%; /* Adjust top position */
+    right: 25%; /* Adjust right position */
+  }
+}
 
+@media (min-width: 993px) {
+  .news-icon {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 24%; /* Adjust top position */
+    right: 37%; /* Adjust right position */
+  }
+}
 
-
+@media (min-width: 993px) {
+  .curr-icon {
+    position: absolute; /* Example: Set the icon as absolute position for larger screens */
+    top: 24%; /* Adjust top position */
+    right: 31%; /* Adjust right position */
+  }
+}
 
 
 @media (min-width: 993px) {
@@ -35,5 +55,32 @@
     position: absolute; /* Example: Set the icon as absolute position for larger screens */
     top: 24%; /* Adjust top position */
     right: 8%; /* Adjust right position */
+  }
+}
+
+@media (max-width: 768px) {
+  .curr-icon {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    /* Other styles */
+  }
+}
+
+@media (max-width: 768px) {
+  .flight-icon {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    /* Other styles */
+  }
+}
+
+@media (max-width: 768px) {
+  .news-icon {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    /* Other styles */
   }
 }

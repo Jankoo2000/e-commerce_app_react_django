@@ -43,7 +43,7 @@ function FlightsScreen() {
                         </thead>
 
                         <tbody>
-                        {/*/!*{users.map((user) => (*!/*!/ thath does not work and i don't know why */}
+                        {/*/!*{users.map((user) => (*!/*!/ that does not work and i don't know why */}
                         {flightsList.map((flight) => (
                             <tr key={flight.booking_link}>
                                 <td>{flight.departure_info}</td>

@@ -7,13 +7,13 @@ import {Button, Col, Form, Image, ListGroup, Row} from "react-bootstrap";
 
 
 function CartScreen({history}) {
-    const dispatch = useDispatch()
+    const actionDispatch = useDispatch()
     // const productId = useParams() // object
     const {id} = useParams();
-    const navigate = useNavigate();
+    const navigateFunction = useNavigate();
 
     const location = useLocation()
-    const qty = location.search ? Number(location.search.split('=')[1]) : 1 // location seach is begginign with '?' mark
+    const quantity = location.search ? Number(location.search.split('=')[1]) : 1 // location seach is begginign with '?' mark
 
 
     const cart = useSelector(state => state.cart) // cart: cartReducer,
@@ -23,19 +23,19 @@ function CartScreen({history}) {
     useEffect(() => {
         if (id) {
             // Dispatch the addToCart action, which is asynchronous
-            dispatch(addToCart(id, qty))
+            actionDispatch(addToCart(id, quantity))
         }
-    }, [dispatch, id, qty]);
+    }, [actionDispatch, id, quantity]);
 
     const removeFromCartHandler = (id) => {
         console.log('remove: ', id)
-        dispatch(removeFromCart(id))
+        actionDispatch(removeFromCart(id))
     }
 
     const checkOutHandler = () => {
         // eslint-disable-next-line
         // navigate('/login?redirect=shipping')
-        navigate('/shipping')
+        navigateFunction('/shipping')
     }
 
 
@@ -69,7 +69,7 @@ function CartScreen({history}) {
                                     <Col md={3}>
                                         <Form.Control as="select" value={item.qty}
                                             // onChange={(e) => setQty(10)}>
-                                                      onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                                      onChange={(e) => actionDispatch(addToCart(item.product, Number(e.target.value)))}>
 
                                             {
                                                 [...Array(item.countInStock).keys()].map((x) => (

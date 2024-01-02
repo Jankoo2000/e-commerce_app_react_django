@@ -11,16 +11,15 @@ import {CREATE_ORDER_RESET} from "../constants/orderConstants";
 function PlaceOrderScreen() {
 
     const orderCreate = useSelector(state => state.orderCreate)
-    const {order, error, success} = orderCreate // if orderCreate is empty order, error, succes are undefined (NOT ERROR)
+    const {order, error, success} = orderCreate
 
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
 
-    // somehow without dispatching that iam modifyfing cart state in redux (you can check that out in browser)
-    // it against design pattern
-    cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2) // adding new property to object
+
+    cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     cart.shippingPrice = (cart.itemsPrice > 200 ? 0 : 10).toFixed(2)
     const tax = 0.23
     cart.taxPrice = Number(cart.itemsPrice * tax).toFixed(2)

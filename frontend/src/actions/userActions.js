@@ -72,10 +72,7 @@ export const logout = () => (dispatch) => {
         type: USER_LOGOUT,
     })
 
-    // it's necessary to solve error
-    // ERROR
-    // log in ->log out -> log in to another account -> check data user profile (displaying old data from previous log in
-    // -> rehresh -> actual data profile
+
     dispatch({
         type: RESET_USER_DETAILS,
     })

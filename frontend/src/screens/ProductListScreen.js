@@ -29,12 +29,11 @@ function ProductListScreen() {
     const {userInfo} = userLogin
 
 
-    // to prevent no admin going to get list of users
     useEffect(() => {
         dispatch({type: CREATE_PRODUCT_RESET})
 
         if (!userInfo && userInfo.isAdmin) {
-            navigate('/login') // redirected to login in but when i am logged it's redirected to main page
+            navigate('/login')
         }
 
         if (successCreate) {
@@ -45,8 +44,6 @@ function ProductListScreen() {
 
 
     }, [dispatch, navigate, userInfo, successDelete, successCreate]);
-    // whenever dispatch, navigate, userInfo, successDelete change - useEffect triggers
-    // if there was not successDelete, after deleting page would not reload
 
     function deleteHandler(id) {
         if (window.confirm('Are you sure you want to delete this user?')) {

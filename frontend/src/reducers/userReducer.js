@@ -34,19 +34,15 @@ export const userLoginReducer = (state = {}, action) => {
 
         case SUCCESS_USER_LOGIN:
             return {loading: false, userInfo: action.payload}
-        // action.payload is a convention used to describe the data or payload associated with a dispatched action
-        // return to userLogin object {loading: false, userInfo: data}
+
 
         case FAILURE_USER_LOGIN:
             return {loading: false, error: action.payload}
 
         case USER_LOGOUT:
             return {}
-        // return null
 
         default:
-            // If this reducer doesn't recognize the action type, or doesn't
-            // care about this specific action, return the existing state unchanged
             return state
     }
 }
@@ -59,8 +55,7 @@ export const userRegisterReducer = (state = {}, action) => {
 
         case SUCCESS_USER_REGISTER:
             return {loading: false, userInfo: action.payload}
-        // action.payload is a convention used to describe the data or payload associated with a dispatched action
-        // return to userLogin object {loading: false, userInfo: data}
+
 
         case FAILURE_USER_REGISTER:
             return {loading: false, error: action.payload}
@@ -69,8 +64,6 @@ export const userRegisterReducer = (state = {}, action) => {
             return {}
 
         default:
-            // If this reducer doesn't recognize the action type, or doesn't
-            // care about this specific action, return the existing state unchanged
             return state
     }
 }
@@ -80,7 +73,6 @@ export const userDetailsReducer = (state = {user: {}}, action) => {
     switch (action.type) {
         case REQUEST_USER_DETAILS:
             return {...state, loading: true}
-        // does it return the state so here users that has been registered
 
         case SUCCESS_USER_DETAILS:
             return {loading: false, user: action.payload}
@@ -92,8 +84,7 @@ export const userDetailsReducer = (state = {user: {}}, action) => {
             return {user: {}}
 
         default:
-            // If this reducer doesn't recognize the action type, or doesn't
-            // care about this specific action, return the existing state unchanged
+
             return state
     }
 }
@@ -103,7 +94,6 @@ export const userUpdateProfileReducer = (state = {}, action) => {
     switch (action.type) {
         case REQUEST_USER_UPDATE_PROFILE:
             return {loading: true}
-        // does it return the state so here users that has been registered
 
         case SUCCESS_USER_UPDATE_PROFILE:
             return {loading: false, success: true, userInfo: action.payload}
@@ -114,8 +104,6 @@ export const userUpdateProfileReducer = (state = {}, action) => {
         case RESET_USER_UPDATE_PROFILE:
             return {}
         default:
-            // If this reducer doesn't recognize the action type, or doesn't
-            // care about this specific action, return the existing state unchanged
             return state
     }
 }
@@ -124,7 +112,6 @@ export const userListReducer = (state = {user: []}, action) => {
     switch (action.type) {
         case REQUEST_USER_LIST:
             return {loading: true}
-        // does it return the state so here users that has been registered
 
         case SUCCESS_USER_LIST:
             return {loading: false, users: action.payload}
@@ -135,8 +122,7 @@ export const userListReducer = (state = {user: []}, action) => {
         case RESET_USER_LIST:
             return {users: []}
         default:
-            // If this reducer doesn't recognize the action type, or doesn't
-            // care about this specific action, return the existing state unchanged
+
             return state
     }
 }
@@ -145,7 +131,6 @@ export const userDeleteReducer = (state = {}, action) => {
     switch (action.type) {
         case REQUEST_USER_DELETE:
             return {loading: true}
-        // does it return the state so here users that has been registered
 
         case SUCCESS_USER_DELETE:
             return {loading: false, success: true}

@@ -8,10 +8,7 @@ import {listProductsDetails} from "../actions/productActions";
 import {useDispatch, useSelector} from "react-redux";
 
 function ProductScreen() {
-    // HOOKS need clousere
-    // const [qty, setQty] = useState(1); => [1, setState_function_reference]
-    // <button onClick={() => setQty(qty + 1)}>Increment</button>
-    // when count is changed component is automaticlly re-rendered
+
     const [qty, setQty] = useState(1);
 
 
@@ -21,11 +18,10 @@ function ProductScreen() {
 
 
     const dispatch = useDispatch()
-    const productDetails = useSelector(state => state.productDetails) // it allows you to select and access data from your Redux store within a React functional component.
+    const productDetails = useSelector(state => state.productDetails)
     const {loading, error, product} = productDetails
 
-    // When you provide an empty dependency array ([]) as the second argument to useEffect, it tells React that the
-    // effect should run only once, immediately after the initial render of the component
+
     useEffect(() => {
         dispatch(listProductsDetails(id))
     }, [dispatch, id]);
@@ -37,8 +33,7 @@ function ProductScreen() {
 
     return (
         <div>
-            {/*<h1>{id}</h1>*/}
-            {/*<h1>{qty}</h1>*/}
+
             <Link to='/' className='btn btn-light my-3'>Go back </Link>
             {loading ?
                 <Loader/>

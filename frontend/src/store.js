@@ -22,25 +22,21 @@ import {
 } from "./reducers/userReducer";
 import {
     orderCreateReducer,
-    orderDeliver, orderDeliverReducer,
+    orderDeliverReducer,
     orderDetailsReducer,
-    orderListMy,
     orderListMyReducer,
     orderListReducer,
     orderPayReducer
 } from "./reducers/orderReducers";
 import {flightsListReducer} from "./reducers/flightsReducer";
 import {currencyListReducer} from "./reducers/currencyReducers";
-import {useDispatch} from "react-redux";
-import {currencyActions} from "./actions/currencyActions";
 import {newsListReducer} from "./reducers/newsReducer";
 
 
-// here are stored all values in these objects
-// all states
+
 const reducer = combineReducers({
 
-    productList: productListReducer, // state : value
+    productList: productListReducer,
     productDetails: productDetailsReducer,
     productDelete: productDeleteReducer,
     productCreate: productCreateReducer,
@@ -89,14 +85,12 @@ const initialState = {
 
 const middleware = [thunk]
 
-// The store holds the current state of your application.
-const store = createStore(reducer, // Reducer(s)
-    initialState, // Initial state
-    composeWithDevTools( // Enhancers (Redux DevTools)
-        applyMiddleware(...middleware)// Middleware
+
+const store = createStore(reducer,
+    initialState,
+    composeWithDevTools(
+        applyMiddleware(...middleware)
     ))
 
 export default store
 
-// When you refresh a website, the code in your store.js file, which sets up the Redux store, is indeed called again.
-// Reloading the website effectively restarts the entire application, including the initialization process.

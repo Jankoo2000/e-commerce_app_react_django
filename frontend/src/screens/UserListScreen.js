@@ -20,16 +20,14 @@ function UserListScreen() {
     const userDelete = useSelector(state => state.userDelete)
     const {success: successDelete} = userDelete
 
-    // to prevent no admin going to get list of users
     useEffect(() => {
         if (userInfo && userInfo.isAdmin)
             dispatch(listUsers())
         else {
-            navigate('/login') // redirected to login in but when i am logged it's redirected to main page
+            navigate('/login')
         }
     }, [dispatch, navigate, successDelete, userInfo]);
 
-    // if there was not successDelete, after deleting page would not reload
 
     function deleteHandler(id) {
         if (window.confirm('Are you sure you want to delete this user?')) {

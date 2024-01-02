@@ -161,6 +161,9 @@ function ProfileScreen() {
                                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
                                     <i className='fas fa-times' style={{color: 'red'}}/>
                                 )}</td>
+                                <td>{order.isDelivered ? <i className='fas fa-check' style={{color: 'green'}}/> : (
+                                    <i className='fas fa-times' style={{color: 'red'}}/>
+                                )}</td>
                                 <td>
                                     <LinkContainer to={`/order/${order._id}`}>
                                         <Button className='btn-sm'>Details</Button>

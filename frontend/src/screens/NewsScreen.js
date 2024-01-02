@@ -24,32 +24,6 @@ function NewsScreen() {
     const renderProductLink = (content) => <Link to={productLink}>{content}</Link>;
 
     return (
-        // <div>
-        //     <h1>Articles</h1>
-        //     {loading ? <Loader/> :
-        //         error ? <Message variant='danger'>{error}</Message> :
-        //             articles.results.map((article) => (
-        //                 <div key={article.article_id} className="mt-5">
-        //                     {article.image_url && (
-        //                         <img
-        //                             src={article.image_url}
-        //                             alt="Article"
-        //                             className="article-image"
-        //                             style={{
-        //                                 width: '100%',
-        //                                 height: 'auto'
-        //                             }}
-        //                         />)
-        //                     }
-        //                     <h2>{article.title}</h2>
-        //                     <p>{article.description}</p>
-        //                     <a href={article.link} target="_blank" rel="noopener noreferrer">
-        //                         Read more
-        //                     </a>
-        //                 </div>
-        //             ))
-        //     }
-        // </div>
         <div>
             <h1>Articles</h1>
             {loading ? <Loader/> :

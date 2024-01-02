@@ -13,11 +13,11 @@ function CartScreen({history}) {
     const navigateFunction = useNavigate();
 
     const location = useLocation()
-    const quantity = location.search ? Number(location.search.split('=')[1]) : 1 // location seach is begginign with '?' mark
+    const quantity = location.search ? Number(location.search.split('=')[1]) : 1
 
 
-    const cart = useSelector(state => state.cart) // cart: cartReducer,
-    const {cartItems} = cart // const cartReducer = (state = {cartItems: []}, action)
+    const cart = useSelector(state => state.cart)
+    const {cartItems} = cart
 
 
     useEffect(() => {
@@ -33,15 +33,11 @@ function CartScreen({history}) {
     }
 
     const checkOutHandler = () => {
-        // eslint-disable-next-line
-        // navigate('/login?redirect=shipping')
         navigateFunction('/shipping')
     }
 
 
-    // bootstrap grid has 12 columns
-    // child column is also divided by 12 slices
-    // highth is not divided because by slices
+
     return (
         <Row>
             <Col md={8}>
@@ -68,7 +64,6 @@ function CartScreen({history}) {
 
                                     <Col md={3}>
                                         <Form.Control as="select" value={item.qty}
-                                            // onChange={(e) => setQty(10)}>
                                                       onChange={(e) => actionDispatch(addToCart(item.product, Number(e.target.value)))}>
 
                                             {

@@ -4,39 +4,21 @@ import {
     SAVE_SHIPPING_ADDRESS_CART,
     SAVE_PAYMENT_METHOD_CART, CLEAR_ITEMS_CART
 } from "../constants/cartConstants";
-import {FETCH_PRODUCTS_SUCCESS} from "../constants/productConstants";
 
 
-// dispatch(action)
-// dispatch({
-//     type: PRODUCT_LIST_SUCCESS,
-//     payload: data
-// })
 
-//
-// The reason both parts are included in the returned object is to maintain the immutability principle of Redux.
-// Redux expects that when you update the state, you return a completely new state object rather than modifying the existing state directly. Therefore:
-//
-// {...state} ensures that all other properties in the state remain unchanged, preserving their values.
-// cartItems: state.cartItems.map(...) updates only the cartItems property, ensuring that the rest of the state
-// remains the same.
-
-
-// when you return new state you should also return currentState by ...state
 export const cartReducer =
-    //state (the current state, with a default value of an empty cart) and action (the action dispatched).
     (state = {cartItems: [], shippingAddress: {}}, action) => {
         console.log('CART REDUCER')
-        switch (action.type) { // entering type filed form action object
+        switch (action.type) {
             case ADD_ITEM_TO_CART:
                 const item = action.payload
-                const existItem = state.cartItems.find(x => x.product === item.product) // entering filed cartItems (state object)
-                // item.product is _id, because it's define in thath way in action
+                const existItem = state.cartItems.find(x => x.product === item.product)
 
                 if (existItem) {
 
                     return {
-                        ...state, // returning shallow copy of state, and therefore the content of this entire structure
+                        ...state,
                         cartItems: state.cartItems.map(x =>
                             x.product === existItem.product ? item : x
                         )

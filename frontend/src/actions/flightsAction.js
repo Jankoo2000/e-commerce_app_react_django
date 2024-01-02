@@ -9,12 +9,6 @@ export const getFlights = (parameters) => async (dispatch, getState) => {
 
         const {userLogin: {userInfo}} = getState()
 
-        // const config = {
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //         Authorization: `Bearer ${userInfo.token}`  // sending token to verify user and get access
-        //     }
-        // }
 
         const {data} = await axios.get(
             `/api/flights/`,
@@ -31,7 +25,7 @@ export const getFlights = (parameters) => async (dispatch, getState) => {
             type: GET_FLIGHTS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
-                : error.message, // return Response(message, status=status.HTTP_400_BAD_REQUEST)
+                : error.message,
         })
     }
 }

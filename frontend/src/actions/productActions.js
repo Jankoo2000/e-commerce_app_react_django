@@ -19,29 +19,18 @@ import {
     FETCH_TOP_PRODUCTS_REQUEST,
     FETCH_TOP_PRODUCTS_SUCCESS, FETCH_TOP_PRODUCTS_FAIL,
 } from "../constants/productConstants";
-import {LIST_MY_ORDERS_FAIL, LIST_MY_ORDERS_REQUEST, LIST_MY_ORDERS_SUCCESS} from "../constants/orderConstants";
 
-// ACTIONS - EVENTS
-// {
-//     type: PRODUCT_LIST_SUCCESS,
-//     payload: data
-// }
-// actions typically represent the logic or functionality of your application
-// Actions are dispatched to describe events or intentions that occur within your application.
 export const listProducts = (keyword = '') => async (dispatch) => {
     try {
-        // dispatching action
-        // triggers reducer ??(filters the possible reducers by type (switch(action.type))??
 
         dispatch({
             type: FETCH_PRODUCTS_REQUEST
         })
 
-        // const {data} = await axios.get('/api/products/')
+
         const {data} = await axios.get(`/api/products${keyword}`)
 
-        // dispatching action
-        // triggers reducer
+
         dispatch({
             type: FETCH_PRODUCTS_SUCCESS,
             payload: data
@@ -209,11 +198,9 @@ export const listTopProducts = () => async (dispatch) => {
             type: FETCH_TOP_PRODUCTS_REQUEST
         })
 
-        // const {data} = await axios.get('/api/products/')
         const {data} = await axios.get(`/api/products/top/`)
 
-        // dispatching action
-        // triggers reducer
+
         dispatch({
             type: FETCH_TOP_PRODUCTS_SUCCESS,
             payload: data

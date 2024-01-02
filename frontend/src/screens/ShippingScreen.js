@@ -13,9 +13,6 @@ function ShippingScreen() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // error is not occurred even if localStorage  is empty
-    // then address is undefined
-    // result of address ? address : '' -> ''
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)

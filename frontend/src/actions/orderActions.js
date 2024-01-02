@@ -34,10 +34,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`  // sending token to verify user and get access
             }
         }
-        // AYYlWYCO5Q4ovreI6AwFwPAaoJflhYFhXjc3zml0zcCvcIFQK-uop8qYyvEtHljX1JxO9zlQyEmdaQoA
 
-        // logging
-        // the order is important :  user, config
         const {data} = await axios.post(
             `/api/orders/add/`,
             order,
@@ -83,8 +80,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
             }
         }
 
-        // logging
-        // the order is important :  user, config
+
         const {data} = await axios.get(
             `/api/orders/${id}/`,
             config,
@@ -117,7 +113,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`  // sending token to verify user and get access
+                Authorization: `Bearer ${userInfo.token}`
             }
         }
 
@@ -157,7 +153,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`  // sending token to verify user and get access
+                Authorization: `Bearer ${userInfo.token}`
             }
         }
 
@@ -198,7 +194,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`  // sending token to verify user and get access
+                Authorization: `Bearer ${userInfo.token}`
             }
         }
 

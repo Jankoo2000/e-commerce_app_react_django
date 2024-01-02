@@ -21,11 +21,11 @@ function UserEditScreen() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     const userDetails = useSelector(state => state.userDetails)
-    const {error, loading, user} = userDetails// user login returns loading, userInfo , error
+    const {error, loading, user} = userDetails
     // userDetails is empty
 
     const userUpdate = useSelector(state => state.userUpdate)
-    const {error: errorUpdate, loading: loadingUpdate, success: successUpdate} = userUpdate// user login returns loading, userInfo , error
+    const {error: errorUpdate, loading: loadingUpdate, success: successUpdate} = userUpdate
 
     const dispatch = useDispatch()
 
@@ -39,7 +39,6 @@ function UserEditScreen() {
             navigate('/admin/userlist')
         } else {
             if (!user.name || user._id !== Number(userId)) {
-                // console.log('ZUPA')// may be infinite loop in case  user._id !== userId nuber !== string
                 dispatch(getUserDetails(userId))
 
             } else {

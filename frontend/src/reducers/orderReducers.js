@@ -91,8 +91,7 @@ export const orderPayReducer = (state = {}, action) => {
 }
 
 
-// we don't modify something then so when do not use ...state
-// everytime we load new data
+
 export const orderListMyReducer = (state = {orders: []}, action) => {
     switch (action.type) {
         case LIST_MY_ORDERS_REQUEST:

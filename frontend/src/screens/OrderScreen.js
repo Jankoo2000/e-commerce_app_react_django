@@ -11,7 +11,7 @@ import Loader from "../components/Loader";
 
 function OrderScreen() {
 
-    const {id} = useParams() // name of variable must be exactly as in route <Route path='/order/:id' element={<OrderScreen/>}
+    const {id} = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

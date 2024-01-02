@@ -29,8 +29,7 @@ Get Started:
 To run the application locally:
 
     Clone the repository.
-    Install dependencies for both frontend and backend (npm install for React, pip install -r requirements.txt for Django).
-    Configure environment variables (refer to .env.example files for guidance).
+    Install dependencies for both frontend and backend (npm install for React, pip install -r backend/requirements.txt for Django).
     Start the backend server (python manage.py runserver for Django).
     Start the frontend (npm start for React).
 
